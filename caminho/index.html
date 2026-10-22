@@ -433,6 +433,7 @@ details.gab[open]>summary::after{transform:rotate(45deg)}
   <header class="top">
     <button class="iconbtn" id="back" aria-label="Voltar" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
     <div class="prog" role="progressbar" aria-label="Progresso da lição" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progi"></i></div>
+    <button class="iconbtn" id="snd" aria-label="Som" aria-pressed="true"></button>
     <div class="xp" aria-label="Pontos"><svg viewBox="0 0 24 24"><path fill="#D4AE55" d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.4 5.8 21.1l1.6-7L2 9.3l7.1-.7z"/></svg><span id="xpn">0</span></div>
   </header>
   <p class="chap" id="chap" aria-live="polite"></p>
@@ -465,7 +466,7 @@ function S(tag, attrs, parent) {
 }
 function H(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
 function pop(el) { if (!el) return; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
-function shake(el) { if (!el) return; el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); }
+function shake(el) { if (!el) return; SFX.play('thud'); el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); }
 function setNum(el, v) { if (el.textContent !== String(v)) { el.textContent = v; pop(el); } }
 const wait = ms => new Promise(r => setTimeout(r, RM ? 0 : ms));
 function countUp(el, a, b, dur, fmt) {
@@ -491,6 +492,7 @@ function sparks(el) {
 function shuffled(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 // FLIP: reordena os filhos de uma fileira animando a troca
 function reorder(row, order) {
+  SFX.play('whoosh');
   const first = order.map(e => e.getBoundingClientRect().left);
   order.forEach(e => row.appendChild(e));
   if (RM) return Promise.resolve();
@@ -505,6 +507,77 @@ function reorder(row, order) {
   });
   return wait(580).then(() => order.forEach(e => { e.style.transition = ''; e.style.transform = ''; }));
 }
+
+
+/* ---------------- sons (Web Audio, sintetizados na hora, sem arquivos) ---------------- */
+const SFX = (function () {
+  let ctx = null, master = null, on = true;
+  try { on = localStorage.getItem('caminho:som') !== '0'; } catch (e) {}
+  function ensure() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      ctx = new AC();
+      const comp = ctx.createDynamicsCompressor();
+      master = ctx.createGain(); master.gain.value = .55;
+      master.connect(comp); comp.connect(ctx.destination);
+    }
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+  // nota com ataque curto e queda exponencial (opcional: desliza a frequência)
+  function tone(f, at, dur, type, vol, slide) {
+    const t = ctx.currentTime + at, o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type || 'sine';
+    o.frequency.setValueAtTime(f, t);
+    if (slide) o.frequency.exponentialRampToValueAtTime(slide, t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol || .2, t + .006);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(master);
+    o.start(t); o.stop(t + dur + .02);
+  }
+  let nbuf = null;
+  // ruído filtrado (clique seco, whoosh)
+  function noise(at, dur, vol, f0, f1, q) {
+    if (!nbuf) { nbuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate); const d = nbuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+    const t = ctx.currentTime + at, src = ctx.createBufferSource(), bp = ctx.createBiquadFilter(), g = ctx.createGain();
+    src.buffer = nbuf; bp.type = 'bandpass'; bp.Q.value = q || 1;
+    bp.frequency.setValueAtTime(f0, t); bp.frequency.exponentialRampToValueAtTime(f1 || f0, t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + Math.min(.03, dur / 3));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    src.connect(bp); bp.connect(g); g.connect(master);
+    src.start(t, Math.random() * .5); src.stop(t + dur + .02);
+  }
+  const lib = {
+    tap() { noise(0, .035, .35, 3200, 2200, 1.5); tone(1100, 0, .03, 'triangle', .05); },
+    pop() { tone(420, 0, .09, 'sine', .22, 880); },
+    tick() { tone(2200, 0, .022, 'square', .025); },
+    whoosh() { noise(0, .28, .11, 300, 2400, .9); },
+    thud() { tone(150, 0, .14, 'sine', .3, 70); noise(0, .05, .15, 400, 200, 1); },
+    ok() { tone(784, 0, .14, 'triangle', .16); tone(1175, .08, .18, 'triangle', .16); tone(1568, .16, .4, 'sine', .1); noise(.16, .35, .03, 7000, 9000, 2); },
+    no() { tone(233, 0, .16, 'triangle', .2, 200); tone(175, .13, .26, 'triangle', .2, 150); },
+    info() { tone(988, 0, .12, 'sine', .12); tone(1319, .07, .2, 'sine', .1); },
+    coin() { tone(1319, 0, .06, 'square', .045); tone(1976, .055, .2, 'square', .045); },
+    down() { tone(900, 0, .45, 'triangle', .1, 260); noise(0, .4, .05, 2000, 300, .8); },
+    flip() { noise(0, .32, .14, 500, 3500, 1.2); tone(523, .25, .1, 'sine', .1); },
+    fanfare() { [523, 659, 784, 1047].forEach((f, k) => tone(f, k * .12, .3, 'triangle', .14)); tone(1568, .5, .7, 'sine', .08); noise(.5, .6, .025, 8000, 10000, 2); }
+  };
+  return {
+    play(name) { if (!on) return; if (!ensure()) return; try { lib[name](); } catch (e) {} },
+    unlock() { if (on) ensure(); },
+    get on() { return on; },
+    set(v) { on = v; try { localStorage.setItem('caminho:som', v ? '1' : '0'); } catch (e) {} if (v && ensure()) lib.pop(); }
+  };
+})();
+// destrava o áudio no primeiro toque (exigência dos navegadores de celular)
+document.addEventListener('pointerdown', () => SFX.unlock(), { capture: true });
+// clique seco em todo botão do app (as teclas D/C tocam o próprio som)
+document.addEventListener('click', e => {
+  const b = e.target.closest('.mbtn,.act,.opt,.alt,.cell,.ctl button,.node,.link,.btnline,.keys button,#back,.flip');
+  if (b && !b.disabled) SFX.play('tap');
+}, true);
 
 /* ---------------- matemática ---------------- */
 function fact(n) { let r = 1; for (let t = 2; t <= n; t++) r *= t; return r; }
@@ -674,12 +747,14 @@ function feedback(type, title, text) {
   bar.classList.remove('ok', 'no', 'info');
   if (!type) { fbk.hidden = true; fbk.innerHTML = ''; return; }
   bar.classList.add(type);
+  SFX.play(type);
   fbk.hidden = false;
   fbk.innerHTML = '<span class="ic" aria-hidden="true">' + (type === 'ok' ? '✓' : type === 'no' ? '✕' : '★') + '</span><div><b>' + title + '</b>' + (text ? '<span>' + text + '</span>' : '') + '</div>';
   fbk.style.animation = 'none'; void fbk.offsetWidth; fbk.style.animation = '';
 }
 function addXp(n, el) {
   XP += n;
+  setTimeout(() => SFX.play('coin'), 260);
   const from = (el || cta).getBoundingClientRect();
   if (!RM) {
     const f = H('div', 'xpfly', '+' + n);
@@ -711,6 +786,7 @@ function go(i, dir) {
     s.build(s.el, s.ctx);
   }
   if (prev) {
+    SFX.play('whoosh');
     if (prev.leave) prev.leave(prev.ctx);
     const pe = prev.el;
     pe.classList.remove('in-r', 'in-l');
@@ -741,6 +817,16 @@ function go(i, dir) {
 }
 function next() { go(cur + 1, 1); }
 back.addEventListener('click', () => go(cur - 1, -1));
+const sndBtn = $('#snd');
+function paintSnd() {
+  sndBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" stroke="none"/>' +
+    (SFX.on ? '<path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/>' : '<path d="M17 9l5 6M22 9l-5 6"/>') + '</svg>';
+  sndBtn.setAttribute('aria-pressed', SFX.on ? 'true' : 'false');
+  sndBtn.setAttribute('aria-label', SFX.on ? 'Desligar o som' : 'Ligar o som');
+  sndBtn.style.color = SFX.on ? 'var(--paper)' : 'rgba(242,240,236,.45)';
+}
+sndBtn.addEventListener('click', () => { SFX.set(!SFX.on); paintSnd(); });
+paintSnd();
 const ICON = {
   undo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg>',
   clear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
@@ -823,6 +909,7 @@ screen({
     }
     function add(L) {
       if (word.length >= 7 || (L === 'D' && count('D') >= COLS) || (L === 'C' && count('C') >= ROWS)) { shake(host); return; }
+      SFX.play('tap');
       const a = pos(); word += L; const b = pos();
       const seg = S('line', { x1: g.X(a[0]), y1: g.Y(a[1]), x2: g.X(b[0]), y2: g.Y(b[1]), 'class': 'route glow seg' }, g.L.paths);
       seg.style.setProperty('--len', g.cell);
@@ -940,6 +1027,7 @@ screen({
       const gg = $('#gg', el), gn = $('#gn', el), all = words(COLS, ROWS);
       for (let k = 0; k < all.length; k++) {
         gg.insertAdjacentHTML('beforeend', thumb(all[k], passes(all[k], 2, 1) && false));
+        SFX.play('tick');
         gn.textContent = k + 1;
         if (!RM) await wait(55);
       }
@@ -989,6 +1077,7 @@ screen({
         ac.textContent = 'Dividir por 4!';
       } else if (st === 1) {
         fm.textContent = '7! ÷ 4!'; pop(fm);
+        SFX.play('down');
         await countUp(on, fact(7), fact(7) / fact(4), 900, big); pop(on);
         ou.textContent = 'ordens depois de juntar as que só trocam D com D';
         ac.textContent = 'Embaralhar só os C';
@@ -998,6 +1087,7 @@ screen({
         ac.textContent = 'Dividir por 3!';
       } else if (st === 3) {
         fm.innerHTML = '7! ÷ (4! · 3!) = <span class="gold">' + TOTAL + '</span>'; pop(fm);
+        SFX.play('down');
         await countUp(on, fact(7) / fact(4), TOTAL, 900, big); pop(on);
         ou.textContent = 'palavras diferentes = caminhos diferentes';
         ac.hidden = true; eqc.innerHTML = '';
@@ -1025,7 +1115,8 @@ screen({
     city(g, { ping: true });
     const r = $('#pr', el), v = $('#pv', el);
     const upd = () => { v.textContent = r.value + '%'; r.style.setProperty('--p', r.value + '%'); };
-    r.addEventListener('input', upd); upd();
+    let lastT = -1;
+    r.addEventListener('input', () => { upd(); const t = Math.round(r.value / 5); if (t !== lastT) { lastT = t; SFX.play('tick'); } }); upd();
     this.ctaFn = () => {
       state.guessPct = +r.value; r.disabled = true;
       ctx.feedback('info', 'Chute guardado: ' + r.value + '%', 'Agora a conta. No fim você compara.');
@@ -1079,6 +1170,7 @@ function countScreen(o) {
         last = g.path(this.ws[k], { start: o.from, cls: 'glow' + (o.soft ? ' soft' : ''), animate: true, dur: .5 });
         g.walkOn(this.wk, this.ws[k], o.from, 110);
         cl.insertAdjacentHTML('beforeend', tilesHTML(this.ws[k]));
+        SFX.play('pop');
         setNum(cn, k + 1);
         await wait(RM ? 0 : 650);
       }
@@ -1161,7 +1253,7 @@ screen({
     const order = shuffled(sq.map((_, k) => k)).slice(0, n);
     countUp($('#xn', el), 0, n, RM ? 0 : n * 70);
     countUp($('#xp', el), 0, Math.round(n / TOTAL * 1000), RM ? 0 : n * 70, v => (v / 10).toFixed(1).replace('.', ',') + '%');
-    for (const k of order) { sq[k].classList.add('on'); await wait(70); }
+    for (const k of order) { sq[k].classList.add('on'); SFX.play('tick'); await wait(70); }
     const g = state.guessPct;
     $('.bars', el).scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'nearest' });
     $('#b1', el).style.width = (g == null ? 0 : g) + '%';
@@ -1227,6 +1319,7 @@ screen({
       hits[i + ',' + j] = h;
     }
     $('#sh', el).addEventListener('change', function () {
+      SFX.play(this.checked ? 'whoosh' : 'pop');
       heat = this.checked;
       $('#shn', el).hidden = !heat;
       $$('.lbl', g.svg).forEach(t => { t.style.display = heat ? 'none' : ''; });
@@ -1258,6 +1351,7 @@ screen({
     const fc = $('#fc', el);
     fc.addEventListener('click', () => {
       if (fc.classList.contains('on')) return;
+      SFX.play('flip');
       fc.classList.add('on'); fc.setAttribute('aria-label', 'Bizu: P(passar por P) = (caminhos até P) × (caminhos depois de P) ÷ total');
       setTimeout(() => { sparks(fc); ctx.xp(20, fc); ctx.feedback('ok', 'Bizu desbloqueado', 'Tira print dessa carta.'); ctx.done(); }, RM ? 0 : 450);
     });
@@ -1647,6 +1741,7 @@ screen({
     requestAnimationFrame(() => requestAnimationFrame(() => { dv.style.strokeDashoffset = C * (1 - hits / 2) + (hits ? 0 : 0.0001); }));
     $('#dt', el).textContent = hits + '/2';
     countUp($('#fx', el), 0, XP, 900);
+    setTimeout(() => SFX.play('fanfare'), RM ? 0 : 350);
     if (hits === 2) setTimeout(() => sparks($('.donut', el)), RM ? 0 : 900);
   }
 });
