@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Matemática do ENEM: revisão da reta final</title>
-<meta name="description" content="Os 8 assuntos que mais caíram em matemática no ENEM de 2016 a 2025, na ordem: fórmulas, bizus, pegadinhas, testes rápidos, plano até domingo e a cola pra tirar print.">
+<meta name="description" content="Os 8 assuntos que mais caíram em matemática no ENEM de 2016 a 2025, na ordem: fórmulas, bizus, pegadinhas, testes, simulado no ritmo da prova, flashcards e a cola pra tirar print.">
 <meta name="theme-color" content="#0F1F3D">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Matemática do ENEM: revisão da reta final">
-<meta property="og:description" content="Os 8 assuntos que mais caem, na ordem. Fórmulas, bizus, pegadinhas, 15 testes rápidos e a cola pra revisar no sábado.">
+<meta property="og:description" content="Os 8 assuntos que mais caem, na ordem. Fórmulas, bizus, pegadinhas, simulado com cronômetro, flashcards e a cola pra revisar no sábado.">
 <meta property="og:image" content="https://bobeda12.github.io/materiais/enem/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,132 +21,174 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0F1F3D; --navy-2:#1A2D52; --navy-3:#24396314;
+  --navy:#0F1F3D; --navy-2:#1A2D52; --navy-3:#22386A;
   --gold:#D4A84B; --gold-2:#E8C77A; --gold-ink:#6B4F10;
   --paper:#F6F4EF; --paper-2:#E7E2D6;
-  --green:#3FA66B; --green-ink:#1D6B40; --green-bg:#DDF1E4;
-  --red:#D9534F; --red-ink:#A3302B; --red-bg:#F8DFDD;
+  --green:#3FA66B; --green-ink:#1D6B40; --green-bg:#DDF1E4; --green-soft:#8FDDB0;
+  --red:#D9534F; --red-ink:#A3302B; --red-bg:#F8DFDD; --red-soft:#FF9C97;
   --muted:rgba(246,244,239,.76);
-  --line:rgba(246,244,239,.16);
+  --line:rgba(246,244,239,.15);
   --serif:"Lora",Georgia,serif;
   --sans:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --topH:56px; --tabH:64px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--navy);color:var(--paper);font:500 15px/1.55 var(--sans);overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.07;
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#0A1630;color:var(--paper);font:500 15px/1.55 var(--sans);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 a{color:var(--gold-2)}
 button{font-family:inherit;color:inherit}
 b,strong{font-weight:700}
 sub{font-size:.7em}
-:focus-visible{outline:3px solid var(--gold-2);outline-offset:3px;border-radius:6px}
-.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:0 16px max(24px,env(safe-area-inset-bottom))}
-section,[id^="assunto-"]{scroll-margin-top:60px}
-.kicker{font:700 11px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+:focus-visible{outline:3px solid var(--gold-2);outline-offset:2px;border-radius:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.18;margin:0}
-h2{font-size:clamp(24px,6.6vw,28px);margin-bottom:14px}
-.sec{margin:44px 0 0}
+
+/* ---------- casca ---------- */
+.app{position:relative;max-width:520px;margin:0 auto;min-height:100vh;min-height:100dvh;background:var(--navy)}
+@media (min-width:560px){.app{box-shadow:0 0 0 1px var(--line),0 20px 80px rgba(0,0,0,.5)}}
+.top{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:6px;height:calc(var(--topH) + env(safe-area-inset-top));padding:env(safe-area-inset-top) 10px 0;background:rgba(15,31,61,.96);border-bottom:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.top .lead{width:44px;height:44px;display:grid;place-items:center;border:0;background:none;border-radius:12px;cursor:pointer;color:var(--paper);text-decoration:none}
+.top .lead svg{width:24px;height:24px}
+.top .logo{font:700 10px/1 var(--sans);letter-spacing:.06em;background:var(--gold);color:var(--navy);border-radius:8px;width:38px;height:38px;display:grid;place-items:center;text-align:center}
+.top .ttl{font:700 16px/1.2 var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top .ttl small{display:block;font:600 11px/1.2 var(--sans);color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.top .act{min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 10px;border-radius:12px;border:1px solid var(--line);background:none;cursor:pointer;font:700 13px/1 var(--sans);color:var(--paper);text-decoration:none}
+.top .act svg{width:18px;height:18px}
+.top .act[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.view{padding:14px 16px calc(var(--tabH) + 28px + env(safe-area-inset-bottom))}
+.view:focus{outline:none}
+.view.enter{animation:enter .22s ease-out}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--navy-2);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabbar nav{display:grid;grid-template-columns:repeat(5,1fr);max-width:520px;margin:0 auto;height:var(--tabH)}
+.tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--muted);font:600 11px/1 var(--sans);position:relative}
+.tabbar a svg{width:23px;height:23px}
+.tabbar a[aria-current="page"]{color:var(--gold)}
+.tabbar a[aria-current="page"]::before{content:"";position:absolute;top:0;left:28%;right:28%;height:3px;border-radius:0 0 3px 3px;background:var(--gold)}
+.tabbar .dot{position:absolute;top:9px;left:calc(50% + 8px);min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--red);color:#fff;font:700 10px/17px var(--sans);text-align:center}
+
+/* ---------- peças ---------- */
+.kicker{font:700 11px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+.h2{font:700 clamp(22px,6.2vw,26px)/1.2 var(--serif);margin:0 0 12px}
+.sec{margin-top:26px}
 .small{font-size:12px;color:var(--muted);line-height:1.5}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 20px;border-radius:14px;border:2px solid var(--gold);background:transparent;color:var(--gold-2);font:700 16px/1.2 var(--sans);text-decoration:none;cursor:pointer;width:100%;transition:transform .2s,background .2s}
+.card{background:var(--navy-2);border:1px solid var(--line);border-radius:18px;padding:16px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 18px;border-radius:14px;border:2px solid var(--gold);background:transparent;color:var(--gold-2);font:700 15px/1.2 var(--sans);text-decoration:none;cursor:pointer;width:100%;text-align:center;transition:transform .15s}
 .btn:active{transform:scale(.98)}
 .btn.main{background:var(--gold);color:var(--navy)}
+.btn.ghost{border-color:var(--line);color:var(--paper)}
+.btn[aria-pressed="true"]{background:var(--gold);color:var(--navy)}
+.btn[disabled]{opacity:.45;cursor:default}
 .btn svg{width:20px;height:20px;flex:0 0 auto}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stack{display:grid;gap:8px}
+.track{height:8px;border-radius:99px;background:rgba(246,244,239,.12);overflow:hidden}
+.track i{display:block;height:100%;background:var(--gold);border-radius:99px;transition:width .3s}
 .pop{animation:pop .3s ease-out}
-@keyframes pop{50%{transform:scale(1.12)}}
+@keyframes pop{50%{transform:scale(1.15)}}
+.callout{margin:12px 0 8px;padding:12px 14px;border-left:4px solid var(--gold);background:rgba(212,168,75,.1);border-radius:0 12px 12px 0;font:600 14.5px/1.45 var(--sans)}
+.chip{display:inline-flex;align-items:center;gap:4px;font:700 11px/1 var(--sans);padding:5px 8px;border-radius:99px;background:rgba(246,244,239,.1);color:var(--paper);white-space:nowrap}
+.chip.ok{background:rgba(63,166,107,.22);color:var(--green-soft)}
+.chip.gold{background:var(--gold);color:var(--navy)}
+.chip.later{background:var(--gold-2);color:var(--navy);letter-spacing:.06em;text-transform:uppercase;font-size:10px}
 
-/* índice fixo */
-.idx{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(15,31,61,.94);border-bottom:1px solid var(--line);transform:translateY(-110%);transition:transform .25s;padding-top:env(safe-area-inset-top)}
-.idx.show{transform:none}
-.idx nav{display:flex;max-width:520px;margin:0 auto;padding:0 4px}
-.idx a{flex:1;min-width:0;height:44px;display:grid;place-items:center;font:700 14px/1 var(--sans);color:var(--muted);text-decoration:none;position:relative}
-.idx a.done{color:var(--gold)}
-.idx a.done::after{content:"";position:absolute;bottom:7px;left:50%;width:14px;height:3px;margin-left:-7px;border-radius:2px;background:var(--gold)}
-
-/* capa */
-.cover{padding:max(28px,env(safe-area-inset-top)) 0 8px}
-.tags{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:22px}
+/* ---------- início ---------- */
+.hero{padding:6px 0 4px}
+.hero .tags{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .seal{font:700 11px/1 var(--sans);letter-spacing:.14em;color:var(--navy);background:var(--gold);padding:7px 10px;border-radius:6px}
 .handle{font:600 13px/1 var(--sans);color:var(--muted)}
-.cover h1{font-size:clamp(32px,9.4vw,42px);margin-bottom:14px}
-.cover h1 em{font-style:italic;color:var(--gold-2)}
-.sub{font-size:16px;color:var(--muted);margin:0 0 20px}
-.count{display:flex;align-items:center;gap:12px;background:var(--navy-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:12px}
-.count[hidden]{display:none}
-.count .n{font:700 34px/1 var(--sans);color:var(--gold)}
-.count .t{font:600 14px/1.3 var(--sans)}
-.prog{background:var(--navy-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:18px}
-.prog .t{font:600 14px/1.3 var(--sans);margin-bottom:8px}
-.prog .t b{color:var(--gold)}
-.track{height:10px;border-radius:99px;background:rgba(246,244,239,.12);overflow:hidden}
-.track i{display:block;height:100%;width:0;background:var(--gold);border-radius:99px;transition:width .3s ease-out}
-
-/* ranking */
+.hero h1{font-size:clamp(28px,8.2vw,36px);margin-bottom:10px}
+.hero h1 em{color:var(--gold-2)}
+.hero p{margin:0;color:var(--muted);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:8px;margin-top:18px}
+.stat{background:var(--navy-2);border:1px solid var(--line);border-radius:16px;padding:12px 6px 10px;text-align:center;text-decoration:none;color:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:118px}
+.stat .big{font:700 34px/1 var(--sans);color:var(--gold)}
+.stat .sl{font:600 12px/1.25 var(--sans);color:var(--muted);margin-top:6px}
+.ring{width:62px;height:62px}
+.ring .rb{fill:none;stroke:rgba(246,244,239,.12);stroke-width:6}
+.ring .rf{fill:none;stroke:var(--gold);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset .4s}
+.ring text{font:700 17px var(--sans);fill:var(--paper)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin:4px -12px 12px}
+.day{min-height:54px;border-radius:12px;border:1px solid var(--line);background:var(--navy);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:relative;padding:0}
+.day .d{font:600 11px/1 var(--sans);color:var(--muted)}
+.day .n{font:700 16px/1 var(--sans)}
+.day[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.day[aria-selected="true"] .d{color:var(--navy)}
+.day.today::after{content:"";position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:var(--red)}
+.plan h3{font-size:20px;margin-bottom:4px}
+.plan p{margin:0 0 12px}
+.note{margin:10px 0 0;font-size:13px;color:var(--muted)}
+.next{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-decoration:none;color:var(--paper)}
+.next .pos{width:46px;height:46px;border-radius:14px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font:700 17px/1 var(--sans)}
+.next .t{font:700 17px/1.2 var(--serif)}
+.next .m{font-size:12.5px;color:var(--muted)}
+.next svg{width:22px;height:22px;color:var(--gold)}
 .rank{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.rank a{display:grid;grid-template-columns:24px 1fr auto;gap:3px 10px;align-items:center;text-decoration:none;color:var(--paper);padding:8px 10px;border-radius:12px;background:var(--navy-2);min-height:56px}
+.rank a{display:grid;grid-template-columns:26px 1fr auto;gap:3px 10px;align-items:center;text-decoration:none;color:var(--paper);padding:9px 12px;border-radius:12px;background:var(--navy-2);border:1px solid transparent}
+.rank a.done{border-color:rgba(212,168,75,.45)}
 .rank .p{font:700 14px/1 var(--sans);color:var(--gold);grid-row:span 3}
 .rank .nm{font:600 14px/1.25 var(--sans)}
 .rank .pc{font:700 15px/1 var(--sans);color:var(--gold-2);text-align:right}
-.rank .bar{grid-column:2 / 4;height:8px;border-radius:99px;background:rgba(246,244,239,.1);overflow:hidden}
-.rank .bar i{display:block;height:100%;background:var(--gold);border-radius:99px}
 .rank .q{grid-column:2 / 4;font:500 12px/1.2 var(--sans);color:var(--muted)}
-.callout{margin:14px 0 8px;padding:12px 14px;border-left:4px solid var(--gold);background:rgba(212,168,75,.1);border-radius:0 12px 12px 0;font:600 15px/1.45 var(--sans)}
+.rank .track{grid-column:2 / 4}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tile{background:var(--navy-2);border:1px solid var(--line);border-radius:16px;padding:14px;text-decoration:none;color:var(--paper);min-height:108px;display:flex;flex-direction:column;gap:6px}
+.tile svg{width:26px;height:26px;color:var(--gold)}
+.tile b{font:700 15px/1.2 var(--sans)}
+.tile span{font-size:12px;color:var(--muted);line-height:1.35}
+.end{text-align:center}
+.end p.big{font:600 19px/1.35 var(--serif);margin:0 0 16px}
+.end .small{margin:6px 0 14px}
+footer{margin:26px 0 0;text-align:center;font-size:12px;color:var(--muted)}
 
-/* plano */
-.tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:12px}
-.tab{min-height:56px;border-radius:12px;border:1px solid var(--line);background:var(--navy-2);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 0;position:relative}
-.tab .d{font:600 12px/1 var(--sans);color:var(--muted)}
-.tab .n{font:700 17px/1 var(--sans)}
-.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
-.tab[aria-selected="true"] .d{color:var(--navy)}
-.tab.today::after{content:"hoje";position:absolute;top:-8px;left:50%;transform:translateX(-50%);font:700 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:var(--paper);color:var(--navy);padding:3px 5px;border-radius:5px}
-.panel{background:var(--navy-2);border:1px solid var(--line);border-radius:16px;padding:16px}
-.panel h3{font-size:21px;margin-bottom:6px}
-.panel p{margin:0 0 14px;font-size:16px}
-.panel .go{display:grid;gap:8px}
-.note{margin:12px 0 0;font-size:14px;color:var(--muted)}
+/* ---------- lista de assuntos ---------- */
+.group{font:700 11px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
+.trow{display:grid;grid-template-columns:44px 1fr 22px;gap:4px 12px;align-items:center;background:var(--navy-2);border:1px solid var(--line);border-radius:16px;padding:12px;text-decoration:none;color:var(--paper);margin-bottom:8px}
+.trow.done{border-color:rgba(212,168,75,.55)}
+.trow .pos{grid-row:span 3;width:44px;height:44px;border-radius:13px;background:rgba(246,244,239,.08);display:grid;place-items:center;font:700 16px/1 var(--sans);color:var(--gold)}
+.trow.done .pos{background:var(--gold);color:var(--navy)}
+.trow .pos svg{width:22px;height:22px}
+.trow .t{font:700 17px/1.2 var(--serif)}
+.trow .m{font:500 12.5px/1.3 var(--sans);color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.trow .chev{grid-row:span 3;grid-column:3;width:22px;height:22px;color:var(--muted)}
+.trow .track{grid-column:2 / 3;height:6px}
 
-/* cartões */
-.cards{display:grid;gap:14px}
-.card{background:var(--navy-2);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.card.done{border-color:rgba(212,168,75,.6)}
-.head{width:100%;border:0;background:transparent;text-align:left;cursor:pointer;padding:14px 14px 12px;display:grid;grid-template-columns:auto 1fr 28px;gap:4px 12px;align-items:start}
-.head .pos{font:700 22px/1 var(--sans);color:var(--gold);padding-top:3px;min-width:32px}
-.head .ttl{display:block;font:700 20px/1.18 var(--serif)}
-.head .meta{display:block;font:600 13px/1.35 var(--sans);color:var(--muted);margin-top:4px}
-.head .meta b{color:var(--gold-2)}
-.head .chev{width:28px;height:28px;transition:transform .25s;color:var(--muted);margin-top:2px}
-.card:not(.open) .chev{transform:rotate(-90deg)}
-.head .mini{grid-column:2 / 3;height:6px;border-radius:99px;background:rgba(246,244,239,.1);overflow:hidden;margin-top:6px}
-.head .mini i{display:block;height:100%;background:var(--gold)}
-.head .chk{display:none;margin-left:6px;vertical-align:-3px;width:20px;height:20px;color:var(--gold)}
-.card.done .chk{display:inline-block}
-.later{display:inline-block;font:700 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--navy);background:var(--gold-2);padding:4px 6px;border-radius:5px;margin-bottom:6px}
-.body{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .25s ease,visibility 0s .25s}
-.card.open .body{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .25s ease,visibility 0s 0s}
-.body>div{overflow:hidden;min-height:0}
-.inner{padding:2px 14px 16px}
-.blk{margin-top:16px}
+/* ---------- tela do assunto ---------- */
+.thead .meta{font:600 13px/1.4 var(--sans);color:var(--muted);margin:6px 0 10px}
+.thead .meta b{color:var(--gold-2)}
+.thead h2{font-size:clamp(26px,7.4vw,32px)}
+.segs{position:sticky;top:calc(var(--topH) + env(safe-area-inset-top));z-index:10;display:flex;gap:6px;overflow-x:auto;margin:14px -16px 0;padding:8px 16px;background:var(--navy);border-bottom:1px solid var(--line);scrollbar-width:none}
+.segs::-webkit-scrollbar{display:none}
+.seg{flex:0 0 auto;min-height:44px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:var(--navy-2);font:600 13.5px/1 var(--sans);cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--paper)}
+.seg i{font-style:normal;font:700 11px/1 var(--sans);padding:3px 6px;border-radius:99px;background:rgba(246,244,239,.12)}
+.seg[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.seg[aria-selected="true"] i{background:rgba(15,31,61,.15)}
+.pane{padding-top:16px}
+.blk+.blk{margin-top:18px}
 .blk h4{font:700 11px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
-.blk p{margin:0;font-size:15px}
+.blk p{margin:0}
 ul.plain{margin:0;padding-left:18px}
 ul.plain li{margin:3px 0}
+.minis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mini{border:1px solid var(--line);background:var(--navy-2);border-radius:12px;min-height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:6px 2px}
+.mini b{font:700 20px/1 var(--sans);color:var(--gold)}
+.mini span{font:600 11px/1.2 var(--sans);color:var(--muted);margin-top:4px}
 .fxs{display:grid;gap:8px}
-.fx{border:1px solid var(--line);background:rgba(246,244,239,.04);border-radius:12px;padding:9px 12px}
+.fx{border:1px solid var(--line);background:var(--navy-2);border-radius:12px;padding:10px 12px}
 .fx .l{font:600 12.5px/1.35 var(--sans);color:var(--muted)}
 .fx .f{font:italic 600 clamp(17px,5vw,20px)/1.35 var(--serif);color:var(--gold-2);overflow-wrap:anywhere;margin-top:2px}
 .fx .x{font-size:13px;color:var(--muted);margin-top:2px}
 ul.biz,ul.peg{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-ul.biz li{padding:10px 12px 10px 14px;border-left:4px solid var(--gold);background:rgba(212,168,75,.1);border-radius:0 10px 10px 0}
+ul.biz li{padding:11px 12px 11px 14px;border-left:4px solid var(--gold);background:rgba(212,168,75,.1);border-radius:0 12px 12px 0}
 ul.biz li b{color:var(--gold-2)}
-ul.peg li{position:relative;padding-left:28px}
-ul.peg li::before{content:"!";position:absolute;left:0;top:2px;width:19px;height:19px;border-radius:50%;background:var(--red);color:#fff;font:700 12px/19px var(--sans);text-align:center}
-.mark{margin-top:18px}
-.mark .btn[aria-pressed="true"]{background:var(--gold);color:var(--navy)}
+ul.peg li{position:relative;padding:11px 12px 11px 42px;background:rgba(217,83,79,.1);border-radius:12px}
+ul.peg li::before{content:"!";position:absolute;left:12px;top:12px;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font:700 12px/20px var(--sans);text-align:center}
+.segfoot{display:grid;gap:8px;margin-top:22px}
 
-/* testes */
-.quiz{background:var(--paper);color:var(--navy);border-radius:14px;padding:14px 12px;margin-top:16px}
-.quiz>h4{color:var(--gold-ink)}
+/* ---------- questões ---------- */
+.quiz{background:var(--paper);color:var(--navy);border-radius:16px;padding:14px 12px}
 .qq+.qq{margin-top:18px;padding-top:16px;border-top:1px dashed #C9C2B2}
 .qtag{font:700 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#5A6378;margin-bottom:8px}
 .qtag b{color:var(--navy)}
@@ -161,10 +203,10 @@ ul.peg li::before{content:"!";position:absolute;left:0;top:2px;width:19px;height
 .alt.no .lt{background:var(--red);color:#fff}
 .answered .alt{cursor:default}
 .answered .alt:not(.ok):not(.no):not(.right){opacity:.6}
-.qres:empty{display:none}
 .qres{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;font:700 14px/1.3 var(--sans)}
+.qres:empty{display:none}
 .qres .y{color:var(--green-ink)} .qres .w{color:var(--red-ink)}
-.redo{border:0;background:none;color:#4A5570;font:600 13px/1 var(--sans);text-decoration:underline;cursor:pointer;min-height:44px;padding:0 4px}
+.redo{border:0;background:none;color:#4A5570;font:600 13px/1 var(--sans);text-decoration:underline;cursor:pointer;min-height:44px;min-width:44px;padding:0 4px}
 details.gab{margin-top:8px;border:1.5px solid #CFC8B8;border-radius:10px;background:#FBFAF6}
 details.gab summary{min-height:44px;display:flex;align-items:center;padding:0 12px;font:700 14px/1 var(--sans);cursor:pointer;list-style:none}
 details.gab summary::-webkit-details-marker{display:none}
@@ -175,115 +217,97 @@ details.gab[open] summary::before{content:"−"}
 .gb .bz{background:#F3E6C4;border-left:4px solid var(--gold);padding:8px 10px;border-radius:0 8px 8px 0;margin:0}
 .gb .bz b{color:var(--gold-ink)}
 
-/* prova */
-.prova ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.prova li{display:grid;grid-template-columns:26px 1fr;gap:8px}
-.prova li::before{content:"";width:10px;height:10px;margin:7px 0 0 6px;border-radius:50%;background:var(--gold)}
-.prova li b{color:var(--gold-2)}
-
-/* placar */
+/* ---------- treino ---------- */
 .score{text-align:center}
-.score .big{font:700 46px/1 var(--sans);color:var(--gold);display:inline-block}
-.score .of{font:600 16px/1.3 var(--sans);margin-top:6px}
-.score .miss{margin-top:10px;font-size:14px;color:var(--muted)}
-.score .miss a{display:inline-block;min-width:44px;min-height:44px;line-height:44px;margin:2px;padding:0 6px;border-radius:8px;background:rgba(217,83,79,.2);color:var(--paper);text-decoration:none;font-weight:700}
+.score .big{font:700 52px/1 var(--sans);color:var(--gold);display:inline-block}
+.score .of{font:600 15px/1.3 var(--sans);margin-top:6px}
+.brk{display:grid;gap:8px}
+.brk{gap:2px}
+.brk a{display:grid;grid-template-columns:1fr auto;gap:4px 10px;text-decoration:none;color:var(--paper);align-items:center;min-height:48px;padding:6px 0}
+.brk .nm{font:600 13.5px/1.2 var(--sans)}
+.brk .v{font:700 13px/1 var(--sans);color:var(--gold-2)}
+.brk .bar{grid-column:1 / 3;display:flex;gap:3px;height:8px}
+.brk .bar i{flex:1;border-radius:3px;background:rgba(246,244,239,.12)}
+.brk .bar i.ok{background:var(--green)} .brk .bar i.no{background:var(--red)}
+.mode{display:grid;grid-template-columns:44px 1fr 22px;gap:2px 12px;align-items:center;width:100%;text-align:left;background:var(--navy-2);border:1px solid var(--line);border-radius:16px;padding:14px 12px;cursor:pointer;color:var(--paper);font:inherit}
+.mode.main{border-color:var(--gold);background:linear-gradient(135deg,rgba(212,168,75,.22),rgba(212,168,75,.06))}
+.mode[disabled]{opacity:.45;cursor:default}
+.mode .ic{grid-row:span 2;width:44px;height:44px;border-radius:13px;background:var(--gold);color:var(--navy);display:grid;place-items:center}
+.mode .ic svg{width:24px;height:24px}
+.mode b{font:700 15.5px/1.2 var(--sans)}
+.mode span{font-size:12.5px;color:var(--muted);line-height:1.35}
+.mode .chev{grid-row:span 2;grid-column:3;width:22px;height:22px;color:var(--muted)}
+.qchips{display:flex;flex-wrap:wrap;gap:6px}
+.qchips a{min-height:44px;display:inline-flex;align-items:center;padding:0 12px;border-radius:99px;border:1px solid var(--line);background:var(--navy-2);color:var(--paper);text-decoration:none;font:600 13px/1 var(--sans)}
+.simbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.simbar .c{font:700 13px/1 var(--sans);color:var(--muted)}
+.timer{display:inline-flex;align-items:center;gap:6px;font:700 15px/1 var(--sans);font-variant-numeric:tabular-nums;padding:8px 12px;border-radius:99px;background:var(--navy-2);border:1px solid var(--line)}
+.timer svg{width:16px;height:16px}
+.timer.warn{background:rgba(217,83,79,.2);border-color:var(--red);color:var(--red-soft)}
+.timer.stop{color:var(--gold-2)}
+.pace{font-size:12px;color:var(--muted);margin:8px 0 12px}
+.res-list{display:grid;gap:6px}
+.res-list a{display:flex;justify-content:space-between;align-items:center;min-height:48px;padding:0 12px;border-radius:12px;background:var(--navy-2);border:1px solid var(--line);text-decoration:none;color:var(--paper);font:600 14px/1.2 var(--sans)}
+.res-list a span{color:var(--red-soft);font-size:12px}
 
-/* cola */
+/* ---------- cola e flashcards ---------- */
 .cola{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .cg{border:1px solid var(--line);border-radius:10px;padding:8px 9px}
 .cg h4{font:700 10px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
 .cg ul{list-style:none;margin:0;padding:0}
 .cg li{font:italic 500 13px/1.32 var(--serif);color:var(--gold-2);overflow-wrap:anywhere;padding:1px 0}
+.filters{display:flex;gap:6px;overflow-x:auto;margin:0 -16px 12px;padding:2px 16px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters button{flex:0 0 auto;min-height:44px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:var(--navy-2);font:600 13px/1 var(--sans);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--paper);color:var(--navy);border-color:var(--paper)}
+.fcmeta{display:flex;justify-content:space-between;align-items:center;font:600 12.5px/1.2 var(--sans);color:var(--muted);margin-bottom:10px}
+.flip{perspective:1200px;margin-bottom:12px}
+.fc{position:relative;width:100%;min-height:250px;border:0;padding:0;background:none;cursor:pointer;transform-style:preserve-3d;transition:transform .3s ease;display:block;font:inherit;color:inherit}
+.fc.on{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:20px;padding:20px 18px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.face.front{background:var(--navy-2);border:1px solid var(--line)}
+.face.back{background:var(--paper);color:var(--navy);transform:rotateY(180deg)}
+.face .tp{position:absolute;top:14px;left:16px;font:700 10.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.face.back .tp{color:var(--gold-ink)}
+.face .lb{font:700 22px/1.25 var(--serif)}
+.face .hint{position:absolute;bottom:14px;font:600 12px/1 var(--sans);color:var(--muted)}
+.face .fm{font:italic 600 clamp(20px,6vw,26px)/1.35 var(--serif);color:var(--navy);overflow-wrap:anywhere}
+.face .nt{font-size:13.5px;color:#4A5570;margin-top:8px}
+.empty{text-align:center;padding:30px 10px}
+.empty b{display:block;font:700 20px/1.3 var(--serif);margin-bottom:6px}
 
-/* fim */
-.end{text-align:center}
-.end p.big{font:600 20px/1.35 var(--serif);margin:0 0 20px}
-.end .small{margin:6px 0 16px}
-footer{margin:36px 0 8px;text-align:center;font-size:12px;color:var(--muted)}
-.toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translate(-50%,30px);opacity:0;background:var(--paper);color:var(--navy);font:700 14px/1 var(--sans);padding:12px 18px;border-radius:99px;transition:opacity .25s,transform .25s;z-index:30;pointer-events:none}
+/* ---------- domingo ---------- */
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:66px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.tl li{display:grid;grid-template-columns:56px 1fr;gap:24px;align-items:start;padding:7px 0;position:relative}
+.tl .h{font:700 15px/1.3 var(--sans);color:var(--gold);text-align:right;padding-right:6px;position:relative}
+.tl .h::after{content:"";position:absolute;right:-16px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--navy-2)}
+.tl .x{font-size:14.5px}
+.prova{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.prova li{display:grid;grid-template-columns:26px 1fr;gap:8px}
+.prova li::before{content:"";width:10px;height:10px;margin:7px 0 0 6px;border-radius:50%;background:var(--gold)}
+.prova li b{color:var(--gold-2)}
+.check{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:var(--navy);cursor:pointer;text-align:left;font:600 14.5px/1.3 var(--sans)}
+.check .bx{flex:0 0 auto;width:26px;height:26px;border-radius:8px;border:2px solid var(--gold);display:grid;place-items:center;color:var(--navy)}
+.check .bx svg{width:16px;height:16px;opacity:0}
+.check[aria-pressed="true"] .bx{background:var(--gold)}
+.check[aria-pressed="true"] .bx svg{opacity:1}
+
+.toast{position:fixed;left:50%;bottom:calc(var(--tabH) + 16px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:var(--paper);color:var(--navy);font:700 14px/1 var(--sans);padding:12px 18px;border-radius:99px;transition:opacity .25s,transform .25s;z-index:30;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.selftest{position:fixed;left:8px;right:8px;bottom:8px;z-index:40;background:#000;color:#0f0;font:12px/1.4 monospace;padding:10px;border-radius:8px;max-height:45vh;overflow:auto;white-space:pre-wrap}
+.selftest{position:fixed;left:8px;right:8px;top:70px;z-index:40;background:#000;color:#0f0;font:12px/1.4 monospace;padding:10px;border-radius:8px}
 
 @media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
 </head>
 <body>
-<div class="idx" id="idx" aria-hidden="true"><nav id="idxnav" aria-label="Assuntos"></nav></div>
-
-<main class="wrap">
-  <header class="cover" id="topo">
-    <div class="tags"><span class="seal">REVISÃO ENEM 2026</span><span class="handle">@brenobobeda</span></div>
-    <h1>Matemática do ENEM: <em>revisão da reta final</em></h1>
-    <p class="sub">Os 8 assuntos que mais caíram de 2016 a 2025, do que mais vale ponto pro que menos vale. Revisa na ordem.</p>
-    <div class="count" id="count" hidden><span class="n" id="countN"></span><span class="t" id="countT"></span></div>
-    <div class="prog" aria-live="polite">
-      <div class="t">Você revisou <b id="progN">0</b> de 8 assuntos</div>
-      <div class="track" role="progressbar" aria-label="Assuntos revisados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" id="progBar"><i id="progFill"></i></div>
-    </div>
-    <a class="btn main" href="#ranking">Começar ↓</a>
-  </header>
-
-  <section class="sec" id="ranking" aria-labelledby="h-rank">
-    <p class="kicker">O que mais cai</p>
-    <h2 id="h-rank">O ranking em uma tela</h2>
-    <ol class="rank" id="rank"></ol>
-    <p class="callout">Básica + estatística = 48,5%. Quase metade da prova, ~22 das 45 questões.</p>
-    <p class="small">Fonte: levantamento Aprova Total, provas regulares do ENEM de 2016 a 2025. Questões por prova = % × 45, arredondado.</p>
-  </section>
-
-  <section class="sec" id="plano" aria-labelledby="h-plano">
-    <p class="kicker">Até domingo</p>
-    <h2 id="h-plano">Plano até domingo</h2>
-    <div class="tabs" role="tablist" aria-label="Dias da semana" id="tabs"></div>
-    <div class="panel" role="tabpanel" id="panel" tabindex="0"></div>
-    <p class="note">Revisa fazendo questão de ENEM antigo, com tempo marcado. Ler teoria agora rende pouco.</p>
-  </section>
-
-  <section class="sec" id="assuntos" aria-labelledby="h-ass">
-    <p class="kicker">O centro do material</p>
-    <h2 id="h-ass">Os 8 assuntos</h2>
-    <div class="cards" id="cards"></div>
-  </section>
-
-  <section class="sec prova" id="prova" aria-labelledby="h-prova">
-    <p class="kicker">Na hora da prova</p>
-    <h2 id="h-prova">Domingo, na prova</h2>
-    <div class="panel"><ul id="provaList"></ul></div>
-  </section>
-
-  <section class="sec score" id="placar" aria-labelledby="h-placar">
-    <p class="kicker">Seu placar</p>
-    <h2 id="h-placar" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Placar dos testes</h2>
-    <div class="panel" aria-live="polite">
-      <span class="big" id="scoreN">0</span>
-      <div class="of" id="scoreT">Você acertou 0 de 15</div>
-      <div class="miss" id="miss"></div>
-    </div>
-  </section>
-
-  <section class="sec" id="cola" aria-labelledby="h-cola">
-    <p class="kicker">Resumo de uma tela</p>
-    <h2 id="h-cola">A cola: tira print e revisa no sábado</h2>
-    <div class="cola" id="colaGrid"></div>
-  </section>
-
-  <section class="sec end" id="fim">
-    <p class="big">Revisou? Agora é descansar e confiar. Boa prova domingo.</p>
-    <a class="btn main" id="btnInsta" href="https://www.instagram.com/brenobobeda/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-      Seguir @brenobobeda</a>
-    <p class="small">Bizu de matemática pra ENEM e prova militar toda semana.</p>
-    <a class="btn" id="btnCanal" href="#" target="_blank" rel="noopener">Voltar pro canal</a>
-    <p class="small">Os próximos materiais saem lá primeiro.</p>
-    <button class="btn" id="btnShare" type="button">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
-      Mandar pra um amigo</button>
-    <footer>Feito por @brenobobeda · Eng. de Computação no IME</footer>
-  </section>
-</main>
+<div class="app">
+  <header class="top" id="top"></header>
+  <main class="view" id="view" tabindex="-1"></main>
+</div>
+<div class="tabbar"><nav aria-label="Seções" id="tabbar"></nav></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -508,13 +532,13 @@ T1:{t:`Uma rampa de 10 m de comprimento faz um ângulo de 30° com o chão. A al
 var QIDS = Object.keys(QUESTIONS);
 
 var PLAN = [
-  {d:`Seg`,n:9,t:`Matemática básica`,x:`É 1/3 da prova. Faz questão de ENEM antigo de porcentagem, regra de três e unidades.`,go:[[`#assunto-1`,`Ir para o assunto`]]},
-  {d:`Ter`,n:10,t:`Matemática básica`,x:`É 1/3 da prova. Faz questão de ENEM antigo de porcentagem, regra de três e unidades.`,go:[[`#assunto-1`,`Ir para o assunto`]]},
-  {d:`Qua`,n:11,t:`Estatística`,x:`Média, mediana, moda e gráfico. É o ponto mais rápido de ganhar.`,go:[[`#assunto-2`,`Ir para o assunto`]]},
-  {d:`Qui`,n:12,t:`Geometria espacial`,x:`Volume e capacidade em litros. Decora as 5 fórmulas da cola.`,go:[[`#assunto-3`,`Ir para o assunto`]]},
-  {d:`Sex`,n:13,t:`Funções + geometria plana`,x:`Gráfico de função, vértice da parábola, áreas e semelhança.`,go:[[`#assunto-4`,`Ir para funções`],[`#assunto-5`,`Ir para geometria plana`]]},
-  {d:`Sáb`,n:14,t:`Sábado`,x:`Leve. Refaz só as questões que você errou na semana, revisa a cola do fim da página e dorme cedo.`,go:[[`#cola`,`Ir para a cola`]]},
-  {d:`Dom`,n:15,t:`Dia da prova`,x:`Prova às 13h30 (portões fecham às 13h). Lê a seção 'Na hora da prova' de manhã e não estuda nada novo.`,go:[[`#prova`,`Ir para "Na hora da prova"`]]}
+  {d:`Seg`,n:9,t:`Matemática básica`,x:`É 1/3 da prova. Faz questão de ENEM antigo de porcentagem, regra de três e unidades.`,go:[[`#/assunto/1`,`Ir para o assunto`]]},
+  {d:`Ter`,n:10,t:`Matemática básica`,x:`É 1/3 da prova. Faz questão de ENEM antigo de porcentagem, regra de três e unidades.`,go:[[`#/assunto/1`,`Ir para o assunto`]]},
+  {d:`Qua`,n:11,t:`Estatística`,x:`Média, mediana, moda e gráfico. É o ponto mais rápido de ganhar.`,go:[[`#/assunto/2`,`Ir para o assunto`]]},
+  {d:`Qui`,n:12,t:`Geometria espacial`,x:`Volume e capacidade em litros. Decora as 5 fórmulas da cola.`,go:[[`#/assunto/3`,`Ir para o assunto`]]},
+  {d:`Sex`,n:13,t:`Funções + geometria plana`,x:`Gráfico de função, vértice da parábola, áreas e semelhança.`,go:[[`#/assunto/4`,`Ir para funções`],[`#/assunto/5`,`Ir para geometria plana`]]},
+  {d:`Sáb`,n:14,t:`Sábado`,x:`Leve. Refaz só as questões que você errou na semana, revisa a cola do fim da página e dorme cedo.`,go:[[`#/cola`,`Ir para a cola`]]},
+  {d:`Dom`,n:15,t:`Dia da prova`,x:`Prova às 13h30 (portões fecham às 13h). Lê a seção 'Na hora da prova' de manhã e não estuda nada novo.`,go:[[`#/domingo`,`Ir para "Na hora da prova"`]]}
 ];
 
 var PROVA = [
@@ -539,305 +563,510 @@ var COLA = [
   [`Trigonometria`,`SOH-CAH-TOA · 30°/45°/60° · máx A+|B|, mín A−|B|, período 2π/c`]
 ];
 
+
+var SHORT = [`Básica`,`Estatística`,`Espacial`,`Funções`,`Plana`,`Probabilidade`,`Combinatória`,`Trigonometria`];
+var SEGS = [[`resumo`,`Resumo`],[`formulas`,`Fórmulas`],[`bizus`,`Bizus`],[`pegadinhas`,`Pegadinhas`],[`teste`,`Teste`]];
+var LEVAR = [`Caneta preta de tubo transparente`,`Documento com foto`];
+var TIMELINE = [[`13h`,`Portões fecham (horário de Brasília).`],[`13h30`,`Começa a prova: 90 questões, cerca de 3 minutos por questão.`],[`18h`,`Últimos 30 minutos: passa o gabarito para o cartão-resposta com calma.`],[`18h30`,`Fim da prova.`]];
+var PACE = 180;
+
+/* ---------- ícones ---------- */
+var I = {
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/><path d="M8 7h8M8 11h6"/></svg>',
+  target:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>',
+  cards:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="15" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v13"/></svg>',
+  flag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>',
+  back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+  chev:'<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>',
+  bolt:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',
+  redo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg>',
+  list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  insta:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>'
+};
+
 /* ---------- utilidades ---------- */
 function cfg(k, fb){ var v = CONFIG[k]; return (!v || v.indexOf('{{') === 0) ? fb : v; }
 function $(s){ return document.querySelector(s); }
 function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
-/* espaço que não quebra dentro de números (25 000), depois de R$ e de ≈ */
 function fmt(s){ return String(s).replace(/(\d) (?=\d{3}(?!\d))/g, '$1 ').replace(/R\$ /g, 'R$ ').replace(/≈ /g, '≈ '); }
 function fmtPct(p){ return String(p).replace('.', ',') + '%'; }
 function qText(r){ return r.q[0] === r.q[1] ? String(r.q[0]) : r.q[0] + ' a ' + r.q[1]; }
+function barW(r){ return r.pct / MAX_PCT * 100; }
+function mmss(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
 function pop(el){ if (!el) return; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
 var store = {
   get: function(k, fb){ try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; } },
   set: function(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
-var ICON_CHK = '<svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-var ICON_CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
-
-/* ---------- estado ---------- */
-var reviewed = store.get('enem:revisei', []);
-if (!Array.isArray(reviewed)) reviewed = [];
-var answers = store.get('enem:respostas', {});
-if (!answers || typeof answers !== 'object') answers = {};
+function arr(v){ return Array.isArray(v) ? v : []; }
 
 /* ---------- data de hoje em São Paulo ---------- */
 function todaySP(){
   var m = /[?&]hoje=(\d{4})-(\d{2})-(\d{2})/.exec(location.search);  /* só pra testar */
   if (m) return [+m[1], +m[2], +m[3]];
   try {
-    var parts = new Intl.DateTimeFormat('en-CA', {timeZone:'America/Sao_Paulo', year:'numeric', month:'2-digit', day:'2-digit'}).formatToParts(new Date());
-    var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+    var o = {};
+    new Intl.DateTimeFormat('en-CA', {timeZone:'America/Sao_Paulo', year:'numeric', month:'2-digit', day:'2-digit'}).formatToParts(new Date()).forEach(function(p){ o[p.type] = p.value; });
     return [+o.year, +o.month, +o.day];
   } catch (e) { var d = new Date(); return [d.getFullYear(), d.getMonth() + 1, d.getDate()]; }
 }
 var TODAY = todaySP();
 var DAYS_LEFT = Math.round((Date.UTC(2026, 10, 15) - Date.UTC(TODAY[0], TODAY[1] - 1, TODAY[2])) / 864e5);
+var TODAY_IDX = (TODAY[0] === 2026 && TODAY[1] === 11 && TODAY[2] >= 9 && TODAY[2] <= 15) ? TODAY[2] - 9 : -1;
 
-/* ---------- capa ---------- */
-(function(){
-  var box = $('#count');
-  if (DAYS_LEFT < 0) return;
-  box.hidden = false;
-  if (DAYS_LEFT === 0) { $('#countN').textContent = '🍀'; $('#countT').textContent = 'É hoje. Boa prova!'; }
-  else {
-    $('#countN').textContent = DAYS_LEFT;
-    $('#countT').textContent = (DAYS_LEFT === 1 ? 'Falta 1 dia' : 'Faltam ' + DAYS_LEFT + ' dias') + ' para a prova';
-    $('#countN').setAttribute('aria-hidden', 'true');
-  }
-})();
-
-/* ---------- ranking ---------- */
-(function(){
-  var ol = $('#rank');
-  RANK.forEach(function(r, i){
-    var li = document.createElement('li');
-    var w = (r.pct / MAX_PCT * 100).toFixed(1);
-    li.innerHTML = '<a href="#assunto-' + (i + 1) + '" data-w="' + w + '" aria-label="' + (i + 1) + 'º, ' + r.n + ', ' + fmtPct(r.pct) + ', cerca de ' + qText(r) + ' questões">' +
-      '<span class="p">' + (i + 1) + 'º</span><span class="nm">' + r.n + '</span><span class="pc">' + fmtPct(r.pct) + '</span>' +
-      '<span class="q">' + fmt('≈ ' + qText(r)) + ' questões</span><span class="bar"><i style="width:' + w + '%"></i></span></a>';
-    ol.appendChild(li);
+/* ---------- estado ---------- */
+var S = {
+  reviewed: arr(store.get('enem:revisei', [])),
+  answers: store.get('enem:respostas', {}) || {},
+  known: arr(store.get('enem:sei', [])),
+  levar: arr(store.get('enem:levar', [])),
+  day: TODAY_IDX >= 0 ? TODAY_IDX : 0,
+  fc: {filter: 0, i: 0},
+  sim: null
+};
+if (typeof S.answers !== 'object' || Array.isArray(S.answers)) S.answers = {};
+function save(){
+  store.set('enem:revisei', S.reviewed); store.set('enem:respostas', S.answers);
+  store.set('enem:sei', S.known); store.set('enem:levar', S.levar);
+}
+function isRev(n){ return S.reviewed.indexOf(n) >= 0; }
+function tstats(n){
+  var qs = TOPICS[n - 1].qs, done = 0, ok = 0;
+  qs.forEach(function(id){ if (S.answers[id]) { done++; if (S.answers[id] === QUESTIONS[id].a) ok++; } });
+  return {total: qs.length, done: done, ok: ok};
+}
+function score(){
+  var ok = 0, wrong = [], left = [];
+  QIDS.forEach(function(id){
+    var a = S.answers[id];
+    if (!a) left.push(id); else if (a === QUESTIONS[id].a) ok++; else wrong.push(id);
   });
-})();
+  return {ok: ok, wrong: wrong, left: left};
+}
+function topicOf(id){ for (var i = 0; i < TOPICS.length; i++) if (TOPICS[i].qs.indexOf(id) >= 0) return i + 1; return 1; }
+function nextTopic(){ for (var n = 1; n <= 8; n++) if (!isRev(n)) return n; return 0; }
 
-/* ---------- plano ---------- */
-(function(){
-  var tabs = $('#tabs'), panel = $('#panel');
-  var todayIdx = (TODAY[0] === 2026 && TODAY[1] === 11 && TODAY[2] >= 9 && TODAY[2] <= 15) ? TODAY[2] - 9 : -1;
-  PLAN.forEach(function(p, i){
-    var b = document.createElement('button');
-    b.type = 'button'; b.className = 'tab' + (i === todayIdx ? ' today' : '');
-    b.setAttribute('role', 'tab'); b.id = 'tab-' + i; b.setAttribute('aria-controls', 'panel');
-    b.setAttribute('aria-label', p.d + ' ' + p.n + (i === todayIdx ? ', hoje' : ''));
-    b.innerHTML = '<span class="d">' + p.d + '</span><span class="n">' + p.n + '</span>';
-    b.addEventListener('click', function(){ select(i, false); });
-    b.addEventListener('keydown', function(e){
-      var k = e.key, j = null;
-      if (k === 'ArrowRight') j = (i + 1) % 7; else if (k === 'ArrowLeft') j = (i + 6) % 7;
-      else if (k === 'Home') j = 0; else if (k === 'End') j = 6;
-      if (j !== null) { e.preventDefault(); select(j, true); }
-    });
-    tabs.appendChild(b);
-  });
-  function select(i, focus){
-    $$('.tab', tabs).forEach(function(b, j){
-      b.setAttribute('aria-selected', j === i ? 'true' : 'false');
-      b.tabIndex = j === i ? 0 : -1;
-    });
-    var p = PLAN[i];
-    panel.setAttribute('aria-labelledby', 'tab-' + i);
-    panel.innerHTML = '<p class="kicker">' + p.d + ' ' + p.n + (i === todayIdx ? ' · hoje' : '') + '</p><h3>' + p.t + '</h3><p>' + p.x + '</p><div class="go">' +
-      p.go.map(function(g, k){ return '<a class="btn' + (k === 0 ? ' main' : '') + '" href="' + g[0] + '">' + g[1] + '</a>'; }).join('') + '</div>';
-    if (focus) $('#tab-' + i).focus();
+/* ---------- rotas ---------- */
+function parse(){
+  var h = location.hash.replace(/^#\/?/, '');
+  var m = /^assunto-(\d)$/.exec(h); if (m) return {tab:'assuntos', n:+m[1], seg:'resumo'};
+  var p = h.split('/');
+  if (p[0] === 'assunto' && +p[1] >= 1 && +p[1] <= 8) {
+    var seg = SEGS.some(function(s){ return s[0] === p[2]; }) ? p[2] : 'resumo';
+    return {tab:'assuntos', n:+p[1], seg:seg};
   }
-  select(todayIdx >= 0 ? todayIdx : 0, false);
-})();
+  if (p[0] === 'assuntos') return {tab:'assuntos'};
+  if (p[0] === 'treino') return {tab:'treino', sim: p[1] === 'sim'};
+  if (p[0] === 'cola') return {tab:'cola', flash: p[1] === 'flash', n: +p[2] || 0};
+  if (p[0] === 'domingo' || p[0] === 'prova') return {tab:'domingo'};
+  return {tab:'inicio'};
+}
+function key(R){ return R.tab + (R.n ? '/' + R.n : '') + (R.sim ? '/sim' : '') + (R.flash ? '/flash' : ''); }
 
-/* ---------- cartões ---------- */
-function questionHTML(id){
+/* ---------- barra de cima e de baixo ---------- */
+function renderTop(R){
+  var t = $('#top'), h = '';
+  if (R.n && R.tab === 'assuntos') {
+    var on = isRev(R.n);
+    h = '<button class="lead" data-act="back" aria-label="Voltar para os assuntos">' + I.back + '</button>' +
+        '<div class="ttl"><small>' + R.n + 'º de 8</small>' + RANK[R.n - 1].n + '</div>' +
+        '<button class="act" data-act="rev" data-n="' + R.n + '" aria-pressed="' + on + '" aria-label="Marcar ' + RANK[R.n - 1].n + ' como revisado">' + I.check + (on ? 'Revisado' : 'Revisei') + '</button>';
+  } else if (R.sim && S.sim) {
+    h = '<button class="lead" data-act="sim-quit" aria-label="Sair do simulado">' + I.back + '</button>' +
+        '<div class="ttl"><small>Treino</small>' + (S.sim.done ? 'Resultado' : 'Simulado') + '</div><span></span>';
+  } else {
+    var names = {inicio:'Revisão de matemática', assuntos:'Os 8 assuntos', treino:'Treino', cola:'Cola e flashcards', domingo:'Domingo, na prova'};
+    h = '<span class="logo" aria-hidden="true">ENEM<br>2026</span><div class="ttl"><small>@brenobobeda</small>' + names[R.tab] + '</div>' +
+        '<a class="act" href="#/assuntos" aria-label="Você revisou ' + S.reviewed.length + ' de 8 assuntos">' + I.check + '<span id="topRev">' + S.reviewed.length + '/8</span></a>';
+  }
+  t.innerHTML = h;
+}
+function renderTabs(R){
+  var tabs = [['inicio','Início',I.home],['assuntos','Assuntos',I.book],['treino','Treino',I.target],['cola','Cola',I.cards],['domingo','Domingo',I.flag]];
+  var w = score().wrong.length;
+  $('#tabbar').innerHTML = tabs.map(function(t){
+    return '<a href="#/' + t[0] + '"' + (R.tab === t[0] ? ' aria-current="page"' : '') + '>' + t[2] + t[1] +
+      (t[0] === 'treino' && w ? '<span class="dot" aria-label="' + w + ' para refazer">' + w + '</span>' : '') + '</a>';
+  }).join('');
+}
+
+/* ---------- fechamento (seguir, canal, mandar) ---------- */
+function closingHTML(){
+  var canal = cfg('LINK_CANAL', '');
+  return '<div class="sec end card"><p class="big">Revisou? Agora é descansar e confiar. Boa prova domingo.</p>' +
+    '<a class="btn main" href="' + cfg('LINK_INSTAGRAM', 'https://www.instagram.com/brenobobeda/') + '" target="_blank" rel="noopener">' + I.insta + 'Seguir @brenobobeda</a>' +
+    '<p class="small">Bizu de matemática pra ENEM e prova militar toda semana.</p>' +
+    (canal ? '<a class="btn" href="' + canal + '" target="_blank" rel="noopener">Voltar pro canal</a><p class="small">Os próximos materiais saem lá primeiro.</p>' : '') +
+    '<button class="btn ghost" type="button" data-act="share">' + I.share + 'Mandar pra um amigo</button></div>' +
+    '<footer>Feito por @brenobobeda · Eng. de Computação no IME</footer>';
+}
+
+/* ---------- início ---------- */
+function ring(v, max, label, href){
+  var c = 2 * Math.PI * 24, off = c * (1 - (max ? v / max : 0));
+  return '<a class="stat" href="' + href + '"><svg class="ring" viewBox="0 0 60 60" aria-hidden="true"><circle class="rb" cx="30" cy="30" r="24"/>' +
+    '<circle class="rf" cx="30" cy="30" r="24" stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + off.toFixed(1) + '" transform="rotate(-90 30 30)"/>' +
+    '<text x="30" y="36" text-anchor="middle">' + v + '</text></svg><span class="sl">' + label + '</span></a>';
+}
+function planHTML(){
+  var i = S.day, p = PLAN[i];
+  var days = PLAN.map(function(d, k){
+    return '<button type="button" class="day' + (k === TODAY_IDX ? ' today' : '') + '" role="tab" id="day-' + k + '" aria-selected="' + (k === i) + '" tabindex="' + (k === i ? 0 : -1) + '" data-act="day" data-i="' + k + '" aria-label="' + d.d + ' ' + d.n + (k === TODAY_IDX ? ', hoje' : '') + '"><span class="d">' + d.d + '</span><span class="n">' + d.n + '</span></button>';
+  }).join('');
+  return '<div class="days" role="tablist" aria-label="Dias da semana">' + days + '</div>' +
+    '<div class="plan" role="tabpanel" aria-labelledby="day-' + i + '"><p class="kicker">' + p.d + ' ' + p.n + (i === TODAY_IDX ? ' · hoje' : '') + '</p><h3>' + p.t + '</h3><p>' + p.x + '</p><div class="stack">' +
+    p.go.map(function(g, k){ return '<a class="btn' + (k === 0 ? ' main' : '') + '" href="' + g[0] + '">' + g[1] + '</a>'; }).join('') + '</div></div>';
+}
+function viewInicio(){
+  var sc = score(), nx = nextTopic(), stats = '';
+  if (DAYS_LEFT >= 0) stats += '<div class="stat"><span class="big">' + (DAYS_LEFT === 0 ? 'Hoje' : DAYS_LEFT) + '</span><span class="sl">' + (DAYS_LEFT === 0 ? 'É hoje. Boa prova!' : DAYS_LEFT === 1 ? 'dia para a prova' : 'dias para a prova') + '</span></div>';
+  stats += ring(S.reviewed.length, 8, 'assuntos revisados', '#/assuntos');
+  stats += ring(sc.ok, QIDS.length, 'acertos nos testes', '#/treino');
+  var h = '<div class="hero"><div class="tags"><span class="seal">REVISÃO ENEM 2026</span><span class="handle">@brenobobeda</span></div>' +
+    '<h1>Matemática do ENEM: <em>revisão da reta final</em></h1>' +
+    '<p>Os 8 assuntos que mais caíram de 2016 a 2025, do que mais vale ponto pro que menos vale. Revisa na ordem.</p></div>' +
+    '<div class="stats" style="--n:' + (DAYS_LEFT >= 0 ? 3 : 2) + '">' + stats + '</div>';
+  h += '<div class="sec"><p class="kicker">Continuar</p>' + (nx ?
+    '<a class="card next" href="#/assunto/' + nx + '"><span class="pos">' + nx + 'º</span><span><span class="t">' + RANK[nx - 1].n + '</span><br><span class="m">' + fmtPct(RANK[nx - 1].pct) + ' · ' + fmt('≈ ' + qText(RANK[nx - 1])) + ' questões · ainda não revisado</span></span>' + I.chev + '</a>' :
+    '<a class="card next" href="#/treino"><span class="pos">' + I.check + '</span><span><span class="t">Revisou os 8 assuntos</span><br><span class="m">Agora é treinar no ritmo da prova</span></span>' + I.chev + '</a>') + '</div>';
+  h += '<div class="sec"><p class="kicker">Até domingo</p><h2 class="h2">Plano até domingo</h2><div class="card">' + planHTML() + '</div>' +
+    '<p class="note">Revisa fazendo questão de ENEM antigo, com tempo marcado. Ler teoria agora rende pouco.</p></div>';
+  h += '<div class="sec"><p class="kicker">O que mais cai</p><h2 class="h2">O ranking em uma tela</h2><ol class="rank">' +
+    RANK.map(function(r, i){
+      return '<li><a href="#/assunto/' + (i + 1) + '"' + (isRev(i + 1) ? ' class="done"' : '') + ' aria-label="' + (i + 1) + 'º, ' + r.n + ', ' + fmtPct(r.pct) + ', cerca de ' + qText(r) + ' questões' + (isRev(i + 1) ? ', revisado' : '') + '">' +
+        '<span class="p">' + (i + 1) + 'º</span><span class="nm">' + r.n + '</span><span class="pc">' + fmtPct(r.pct) + '</span>' +
+        '<span class="q">' + fmt('≈ ' + qText(r)) + ' questões</span><span class="track"><i style="width:' + barW(r).toFixed(1) + '%"></i></span></a></li>';
+    }).join('') + '</ol>' +
+    '<p class="callout">Básica + estatística = 48,5%. Quase metade da prova, ~22 das 45 questões.</p>' +
+    '<p class="small">Fonte: levantamento Aprova Total, provas regulares do ENEM de 2016 a 2025. Questões por prova = % × 45, arredondado.</p></div>';
+  h += '<div class="sec"><p class="kicker">Ferramentas</p><div class="tiles">' +
+    '<a class="tile" href="#/treino">' + I.clock + '<b>Simulado</b><span>As 15 questões, uma por vez, com cronômetro de prova.</span></a>' +
+    '<a class="tile" href="#/cola/flash">' + I.cards + '<b>Flashcards</b><span>Todas as fórmulas pra decorar virando carta.</span></a>' +
+    '<a class="tile" href="#/cola">' + I.list + '<b>A cola</b><span>Tudo numa tela. Tira print e revisa no sábado.</span></a>' +
+    '<a class="tile" href="#/domingo">' + I.flag + '<b>Domingo</b><span>Horários, estratégia de prova e o que levar.</span></a></div></div>';
+  return h + closingHTML();
+}
+
+/* ---------- assuntos ---------- */
+function viewAssuntos(){
+  var x = S.reviewed.length;
+  function row(n){
+    var r = RANK[n - 1], st = tstats(n), on = isRev(n);
+    return '<a class="trow' + (on ? ' done' : '') + '" href="#/assunto/' + n + '"><span class="pos">' + (on ? I.check : n + 'º') + '</span>' +
+      '<span class="t">' + r.n + '</span>' + I.chev +
+      '<span class="m"><span>' + fmtPct(r.pct) + ' · ' + fmt('≈ ' + qText(r)) + ' questões</span>' +
+      (st.done ? '<span class="chip' + (st.ok === st.total ? ' ok' : '') + '">teste ' + st.ok + '/' + st.total + '</span>' : '') +
+      (on ? '<span class="chip ok">revisado</span>' : '') + '</span>' +
+      '<span class="track"><i style="width:' + barW(r).toFixed(1) + '%"></i></span></a>';
+  }
+  var h = '<div class="card"><div style="display:flex;justify-content:space-between;font:600 14px/1.3 var(--sans);margin-bottom:8px"><span>Você revisou <b style="color:var(--gold)">' + x + '</b> de 8 assuntos</span><span style="color:var(--muted)">' + Math.round(x / 8 * 100) + '%</span></div>' +
+    '<div class="track" role="progressbar" aria-label="Assuntos revisados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="' + x + '"><i style="width:' + (x / 8 * 100) + '%"></i></div></div>';
+  h += '<p class="group">Prioridade · na ordem do que mais cai</p>';
+  for (var n = 1; n <= 5; n++) h += row(n);
+  h += '<p class="group">Se sobrar tempo</p>';
+  for (n = 6; n <= 8; n++) h += row(n);
+  return h;
+}
+
+function questionHTML(id, pick, sim){
   var q = QUESTIONS[id];
-  var h = '<div class="qq" id="q-' + id + '" data-q="' + id + '">' +
-    '<div class="qtag"><b>' + id + '</b> · Questão no estilo ENEM</div>' +
-    '<p class="qt">' + fmt(q.t) + '</p><div class="alts" role="group" aria-label="Alternativas da questão ' + id + '">';
+  var h = '<div class="qq' + (pick ? ' answered' : '') + '" id="q-' + id + '" data-q="' + id + '">' +
+    '<div class="qtag"><b>' + id + '</b> · Questão no estilo ENEM</div><p class="qt">' + fmt(q.t) + '</p>' +
+    '<div class="alts" role="group" aria-label="Alternativas da questão ' + id + '">';
   q.alts.forEach(function(a, k){
-    var L = 'ABCDE'[k];
-    h += '<button type="button" class="alt" data-l="' + L + '"><span class="lt">' + L + '</span><span>' + fmt(a) + '</span><span class="ic" aria-hidden="true"></span></button>';
+    var L = 'ABCDE'[k], cls = '', ic = '', lab = '';
+    if (pick) {
+      if (L === pick && L === q.a) { cls = ' ok'; ic = '✓'; lab = ', sua resposta, certa'; }
+      else if (L === pick) { cls = ' no'; ic = '✗'; lab = ', sua resposta, errada'; }
+      else if (L === q.a) { cls = ' right'; ic = '✓'; lab = ', resposta certa'; }
+    }
+    h += '<button type="button" class="alt' + cls + '" data-act="alt" data-q="' + id + '" data-l="' + L + '"' + (pick ? ' aria-disabled="true"' : '') + (lab ? ' aria-label="' + L + ') ' + fmt(a) + lab + '"' : '') + '><span class="lt">' + L + '</span><span>' + fmt(a) + '</span><span class="ic" aria-hidden="true">' + ic + '</span></button>';
   });
-  h += '</div><div class="qres" aria-live="polite"></div>' +
-    '<details class="gab"><summary>Gabarito</summary><div class="gb">' +
+  h += '</div><div class="qres" aria-live="polite">';
+  if (pick) h += (pick === q.a ? '<span class="y">Acertou!</span>' : '<span class="w">Errou. A certa é ' + q.a + '. Abre o gabarito.</span>') + (sim ? '' : '<button type="button" class="redo" data-act="redo" data-q="' + id + '">Refazer</button>');
+  h += '</div><details class="gab"><summary>Gabarito</summary><div class="gb">' +
     '<p><b>Gabarito: ' + q.a + '.</b> ' + fmt(q.sol) + '</p>' +
     (q.err ? '<p><b>' + (q.errL || 'De onde vem a errada') + ':</b> ' + fmt(q.err) + '</p>' : '') +
     '<p class="bz"><b>Bizu:</b> ' + fmt(q.bz) + '</p></div></details></div>';
   return h;
 }
-(function(){
-  var wrap = $('#cards');
-  TOPICS.forEach(function(t, i){
-    var r = RANK[i], n = i + 1, open = n <= 5;
-    var c = document.createElement('article');
-    c.className = 'card' + (open ? ' open' : '');
-    c.id = 'assunto-' + n;
-    var w = (r.pct / MAX_PCT * 100).toFixed(1);
-    var h = '<button type="button" class="head" aria-expanded="' + open + '" aria-controls="body-' + n + '">' +
-      '<span class="pos">' + n + 'º</span><span>' + (n >= 6 ? '<span class="later">Se sobrar tempo</span><br>' : '') +
-      '<span class="ttl">' + r.n + ICON_CHK + '</span><span class="meta"><b>' + fmtPct(r.pct) + '</b> · ' + fmt('≈ ' + qText(r)) + ' questões por prova</span></span>' + ICON_CHEV +
-      '<span class="mini"><i style="width:' + w + '%"></i></span></button>' +
-      '<div class="body" id="body-' + n + '"><div><div class="inner">';
+
+function viewAssunto(R){
+  var n = R.n, t = TOPICS[n - 1], r = RANK[n - 1], st = tstats(n);
+  var counts = {formulas: t.fx.length, bizus: t.biz.length, pegadinhas: t.peg.length, teste: st.done ? st.ok + '/' + st.total : st.total};
+  var h = '<div class="thead">' + (n >= 6 ? '<span class="chip later">Se sobrar tempo</span>' : '<span class="chip gold">Prioridade ' + n + '</span>') +
+    '<h2 style="margin-top:8px">' + r.n + '</h2><p class="meta"><b>' + fmtPct(r.pct) + '</b> da prova · ' + fmt('≈ ' + qText(r)) + ' questões por prova</p>' +
+    '<div class="track"><i style="width:' + barW(r).toFixed(1) + '%"></i></div></div>';
+  h += '<div class="segs" role="tablist" aria-label="Partes do assunto">' + SEGS.map(function(s){
+    return '<button type="button" class="seg" role="tab" data-act="seg" data-s="' + s[0] + '" aria-selected="' + (R.seg === s[0]) + '">' + s[1] + (counts[s[0]] != null ? ' <i>' + counts[s[0]] + '</i>' : '') + '</button>';
+  }).join('') + '</div><div class="pane" role="tabpanel">';
+  var seg = R.seg;
+  if (seg === 'resumo') {
     h += '<div class="blk"><h4>O que cai</h4><ul class="plain">' + t.cai.map(function(x){ return '<li>' + fmt(x) + '</li>'; }).join('') + '</ul></div>';
     if (t.vem) h += '<div class="blk"><h4>Como costuma vir</h4><p>' + fmt(t.vem) + '</p></div>';
+    h += '<div class="blk"><h4>Neste assunto</h4><div class="minis">' +
+      [['formulas', t.fx.length, 'fórmulas'], ['bizus', t.biz.length, 'bizus'], ['pegadinhas', t.peg.length, 'pegadinhas'], ['teste', t.qs.length, t.qs.length > 1 ? 'questões' : 'questão']].map(function(m){
+        return '<button type="button" class="mini" data-act="seg" data-s="' + m[0] + '"><b>' + m[1] + '</b><span>' + m[2] + '</span></button>';
+      }).join('') + '</div></div>';
+  } else if (seg === 'formulas') {
     h += '<div class="blk"><h4>Fórmulas</h4><div class="fxs">' + t.fx.map(function(f){
       return '<div class="fx"><div class="l">' + f[0] + '</div><div class="f">' + fmt(f[1]) + '</div>' + (f[2] ? '<div class="x">' + fmt(f[2]) + '</div>' : '') + '</div>';
     }).join('') + '</div></div>';
     if (t.units) h += '<div class="blk"><h4>Unidades que mais aparecem</h4><div class="fxs">' + t.units.map(function(u){ return '<div class="fx"><div class="f" style="font-size:16px">' + fmt(u) + '</div></div>'; }).join('') + '</div></div>';
+    h += '<div class="blk"><a class="btn ghost" href="#/cola/flash/' + n + '">' + I.cards + 'Decorar em flashcards</a></div>';
+  } else if (seg === 'bizus') {
     h += '<div class="blk"><h4>Bizus</h4><ul class="biz">' + t.biz.map(function(x){ return '<li>' + fmt(x) + '</li>'; }).join('') + '</ul></div>';
+  } else if (seg === 'pegadinhas') {
     h += '<div class="blk"><h4>Pegadinhas</h4><ul class="peg">' + t.peg.map(function(x){ return '<li>' + fmt(x) + '</li>'; }).join('') + '</ul></div>';
-    h += '<div class="quiz blk"><h4>Teste rápido</h4>' + t.qs.map(questionHTML).join('') + '</div>';
-    h += '<div class="mark"><button type="button" class="btn rev" aria-pressed="false" data-n="' + n + '">Revisei ✓</button></div>';
-    h += '</div></div></div>';
-    c.innerHTML = h;
-    wrap.appendChild(c);
-  });
-
-  $$('.card .head').forEach(function(b){
-    b.addEventListener('click', function(){ setOpen(b.parentNode, !b.parentNode.classList.contains('open')); });
-  });
-  $$('.rev').forEach(function(b){
-    b.addEventListener('click', function(){
-      var n = +b.getAttribute('data-n'), k = reviewed.indexOf(n);
-      if (k >= 0) reviewed.splice(k, 1); else reviewed.push(n);
-      store.set('enem:revisei', reviewed);
-      paintReviewed(true);
-    });
-  });
-  $$('.qq').forEach(function(box){
-    var id = box.getAttribute('data-q');
-    $$('.alt', box).forEach(function(b){
-      b.addEventListener('click', function(){
-        if (answers[id]) return;
-        answers[id] = b.getAttribute('data-l');
-        store.set('enem:respostas', answers);
-        paintQuestion(id); paintScore(true);
-      });
-    });
-  });
-})();
-
-function setOpen(card, open){
-  card.classList.toggle('open', open);
-  card.querySelector('.head').setAttribute('aria-expanded', open ? 'true' : 'false');
-}
-
-function paintReviewed(anim){
-  for (var n = 1; n <= 8; n++) {
-    var on = reviewed.indexOf(n) >= 0;
-    var c = $('#assunto-' + n);
-    c.classList.toggle('done', on);
-    var b = c.querySelector('.rev');
-    b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    b.textContent = on ? 'Revisado ✓ (toca pra desmarcar)' : 'Revisei ✓';
-    var a = $('#idx-' + n); if (a) a.classList.toggle('done', on);
+  } else {
+    h += '<div class="quiz">' + t.qs.map(function(id){ return questionHTML(id, S.answers[id], false); }).join('') + '</div>';
   }
-  var x = reviewed.length;
-  $('#progN').textContent = x;
-  $('#progFill').style.width = (x / 8 * 100) + '%';
-  $('#progBar').setAttribute('aria-valuenow', x);
-  if (anim) pop($('#progN'));
+  var si = SEGS.findIndex(function(s){ return s[0] === seg; });
+  var on = isRev(n);
+  h += '<div class="segfoot">';
+  if (si < SEGS.length - 1) h += '<button type="button" class="btn main" data-act="seg" data-s="' + SEGS[si + 1][0] + '">Próximo: ' + SEGS[si + 1][1] + ' →</button>';
+  h += '<button type="button" class="btn' + (si === SEGS.length - 1 && !on ? ' main' : '') + '" data-act="rev" data-n="' + n + '" aria-pressed="' + on + '">' + (on ? 'Revisado ✓ (toca pra desmarcar)' : 'Revisei ✓') + '</button>';
+  if (si === SEGS.length - 1) h += n < 8 ? '<a class="btn ghost" href="#/assunto/' + (n + 1) + '">Próximo assunto: ' + (n + 1) + 'º ' + RANK[n].n + ' →</a>' : '<a class="btn ghost" href="#/treino">Ir pro treino →</a>';
+  return h + '</div></div>';
 }
 
-function paintQuestion(id){
-  var box = $('#q-' + id), q = QUESTIONS[id], pick = answers[id];
-  box.classList.toggle('answered', !!pick);
-  $$('.alt', box).forEach(function(b){
-    var L = b.getAttribute('data-l');
-    b.classList.remove('ok', 'no', 'right');
-    b.querySelector('.ic').textContent = '';
-    b.setAttribute('aria-disabled', pick ? 'true' : 'false');
-    b.removeAttribute('aria-label');
-    if (!pick) return;
-    if (L === pick && L === q.a) { b.classList.add('ok'); b.querySelector('.ic').textContent = '✓'; b.setAttribute('aria-label', L + ', sua resposta, certa'); }
-    else if (L === pick) { b.classList.add('no'); b.querySelector('.ic').textContent = '✗'; b.setAttribute('aria-label', L + ', sua resposta, errada'); }
-    else if (L === q.a) { b.classList.add('right'); b.querySelector('.ic').textContent = '✓'; b.setAttribute('aria-label', L + ', resposta certa'); }
-  });
-  var res = box.querySelector('.qres');
-  if (!pick) { res.innerHTML = ''; return; }
-  res.innerHTML = (pick === q.a ? '<span class="y">Acertou!</span>' : '<span class="w">Errou. A certa é ' + q.a + '. Abre o gabarito.</span>') +
-    '<button type="button" class="redo">Refazer</button>';
-  res.querySelector('.redo').addEventListener('click', function(){
-    delete answers[id]; store.set('enem:respostas', answers);
-    box.querySelector('details').open = false;
-    paintQuestion(id); paintScore(true);
-    box.querySelector('.alt').focus();
-  });
+/* ---------- treino ---------- */
+function viewTreino(){
+  var sc = score(), h = '';
+  h += '<div class="card score" aria-live="polite"><span class="big" id="scoreN">' + sc.ok + '</span><div class="of">Você acertou ' + sc.ok + ' de ' + QIDS.length + '</div>' +
+    '<p class="small" style="margin:6px 0 0">' + (QIDS.length - sc.left.length) + ' respondidas · ' + sc.wrong.length + ' erradas · ' + sc.left.length + ' faltando</p></div>';
+  h += '<div class="sec stack">' +
+    '<button type="button" class="mode main" data-act="sim-start" data-m="all"><span class="ic">' + I.clock + '</span><b>Simulado das 15 · ritmo de prova</b>' + I.chev + '<span>Uma por vez, com cronômetro de 3 minutos por questão, como no domingo.</span></button>' +
+    '<button type="button" class="mode" data-act="sim-start" data-m="wrong"' + (sc.wrong.length ? '' : ' disabled') + '><span class="ic">' + I.redo + '</span><b>Refazer as que errei (' + sc.wrong.length + ')</b>' + I.chev + '<span>' + (sc.wrong.length ? 'É o treino do sábado: ' + sc.wrong.join(', ') + '.' : 'Nenhuma errada por enquanto.') + '</span></button>' +
+    '<button type="button" class="mode" data-act="sim-start" data-m="left"' + (sc.left.length ? '' : ' disabled') + '><span class="ic">' + I.bolt + '</span><b>Responder as que faltam (' + sc.left.length + ')</b>' + I.chev + '<span>' + (sc.left.length ? 'Só as que você ainda não tentou.' : 'Você já respondeu todas.') + '</span></button></div>';
+  h += '<div class="sec"><p class="kicker">Por assunto</p><div class="card brk">' + TOPICS.map(function(t, i){
+    var cells = t.qs.map(function(id){ var a = S.answers[id]; return '<i class="' + (!a ? '' : a === QUESTIONS[id].a ? 'ok' : 'no') + '"></i>'; }).join('');
+    var st = tstats(i + 1);
+    return '<a href="#/assunto/' + (i + 1) + '/teste"><span class="nm">' + (i + 1) + 'º ' + RANK[i].n + '</span><span class="v">' + st.ok + '/' + st.total + '</span><span class="bar" aria-hidden="true">' + cells + '</span></a>';
+  }).join('') + '</div></div>';
+  return h;
+}
+function startSim(mode){
+  var sc = score();
+  var ids = mode === 'wrong' ? sc.wrong.slice() : mode === 'left' ? sc.left.slice() : QIDS.slice();
+  if (!ids.length) return;
+  S.sim = {mode: mode, ids: ids, i: 0, picks: {}, times: {}, t0: Date.now(), done: false};
+  if (location.hash === '#/treino/sim') render(); else location.hash = '#/treino/sim';
+}
+function viewSim(){
+  var s = S.sim;
+  if (s.done) {
+    var ok = 0, tot = 0, miss = [];
+    s.ids.forEach(function(id){ if (s.picks[id] === QUESTIONS[id].a) ok++; else miss.push(id); tot += s.times[id] || 0; });
+    var avg = tot / s.ids.length;
+    var h = '<div class="card score"><p class="kicker">Resultado</p><span class="big">' + ok + '/' + s.ids.length + '</span><div class="of">' + (ok === s.ids.length ? 'Gabaritou!' : 'acertos nesta rodada') + '</div></div>';
+    h += '<div class="sec row2"><div class="stat" style="min-height:96px"><span class="big" style="font-size:26px">' + mmss(tot) + '</span><span class="sl">tempo total</span></div>' +
+      '<div class="stat" style="min-height:96px"><span class="big" style="font-size:26px;color:' + (avg > PACE ? 'var(--red-soft)' : 'var(--gold)') + '">' + mmss(avg) + '</span><span class="sl">média por questão</span></div></div>';
+    h += '<p class="callout">' + (avg <= PACE ? 'Dentro do ritmo. No domingo você tem cerca de 3 minutos por questão.' : 'Acima de 3 minutos por questão. No domingo, travou: marca, pula e segue.') + '</p>';
+    if (miss.length) h += '<div class="sec"><p class="kicker">Pra revisar</p><div class="res-list">' + miss.map(function(id){
+      var n = topicOf(id); return '<a href="#/assunto/' + n + '/teste">' + id + ' · ' + RANK[n - 1].n + '<span>ver gabarito →</span></a>';
+    }).join('') + '</div></div>';
+    h += '<div class="sec stack">' + (miss.length ? '<button type="button" class="btn main" data-act="sim-start" data-m="wrong">' + I.redo + 'Refazer as que errei</button>' : '') +
+      '<button type="button" class="btn ghost" data-act="sim-quit">Voltar ao treino</button></div>';
+    return h;
+  }
+  var id = s.ids[s.i], pick = s.picks[id], n = topicOf(id);
+  var el = pick ? s.times[id] : (Date.now() - s.t0) / 1000;
+  var h2 = '<div class="sim"><div class="simbar"><span class="c">Questão ' + (s.i + 1) + ' de ' + s.ids.length + ' · ' + SHORT[n - 1] + '</span>' +
+    '<span class="timer' + (pick ? ' stop' : el > PACE ? ' warn' : '') + '" id="simTimer" role="timer" aria-label="Tempo nesta questão">' + I.clock + '<span>' + mmss(el) + '</span></span></div>' +
+    '<div class="track"><i style="width:' + ((s.i + (pick ? 1 : 0)) / s.ids.length * 100) + '%"></i></div>' +
+    '<p class="pace">Meta: até 3:00 por questão. Passou de 4 minutos na prova, pula.</p>' +
+    '<div class="quiz">' + questionHTML(id, pick, true) + '</div>';
+  if (pick) h2 += '<div class="segfoot"><button type="button" class="btn main" data-act="sim-next">' + (s.i < s.ids.length - 1 ? 'Próxima →' : 'Ver resultado') + '</button></div>';
+  return h2 + '</div>';
 }
 
-function paintScore(anim){
-  var ok = 0, miss = [];
-  QIDS.forEach(function(id){
-    if (!answers[id]) return;
-    if (answers[id] === QUESTIONS[id].a) ok++; else miss.push(id);
+/* ---------- cola e flashcards ---------- */
+function deck(f){
+  var out = [];
+  TOPICS.forEach(function(t, i){
+    if (f && f !== i + 1) return;
+    t.fx.forEach(function(x, k){ out.push({key: (i + 1) + '-' + k, n: i + 1, l: x[0], f: x[1], x: x[2]}); });
   });
-  $('#scoreN').textContent = ok;
-  $('#scoreT').textContent = 'Você acertou ' + ok + ' de ' + QIDS.length;
-  $('#miss').innerHTML = miss.length ? 'Pra refazer no sábado: ' + miss.map(function(id){ return '<a href="#q-' + id + '">' + id + '</a>'; }).join(' ') : '';
-  if (anim) pop($('#scoreN'));
+  return out;
+}
+function viewCola(R){
+  var h = '<div class="segs" role="tablist" aria-label="Cola ou flashcards" style="margin-top:-14px">' +
+    '<a class="seg" role="tab" href="#/cola" aria-selected="' + !R.flash + '" style="text-decoration:none">A cola</a>' +
+    '<a class="seg" role="tab" href="#/cola/flash" aria-selected="' + !!R.flash + '" style="text-decoration:none">Flashcards</a></div><div class="pane">';
+  if (!R.flash) {
+    h += '<h2 class="h2">A cola: tira print e revisa no sábado</h2><div class="cola">' + COLA.map(function(g){
+      return '<div class="cg"><h4>' + g[0] + '</h4><ul>' + g[1].split(' · ').map(function(x){ return '<li>' + fmt(x) + '</li>'; }).join('') + '</ul></div>';
+    }).join('') + '</div>';
+    return h + '</div>';
+  }
+  if (R.n && S.fc.filter !== R.n) { S.fc.filter = R.n; S.fc.i = 0; }
+  var f = S.fc.filter, all = deck(f);
+  var todo = all.filter(function(c){ return S.known.indexOf(c.key) < 0; });
+  h += '<div class="filters">' + ['Todos'].concat(SHORT).map(function(nm, k){
+    return '<button type="button" data-act="fc-filter" data-f="' + k + '" aria-pressed="' + (f === k) + '">' + nm + '</button>';
+  }).join('') + '</div>';
+  h += '<div class="fcmeta"><span>Já sei ' + (all.length - todo.length) + ' de ' + all.length + '</span>' + (all.length - todo.length ? '<button type="button" class="redo" style="color:var(--muted)" data-act="fc-reset">Zerar</button>' : '') + '</div>';
+  h += '<div class="track" style="margin-bottom:14px"><i style="width:' + ((all.length - todo.length) / all.length * 100) + '%"></i></div>';
+  if (!todo.length) {
+    return h + '<div class="card empty"><b>Você já sabe todas daqui.</b><p class="small">Toca em "Zerar" pra treinar de novo ou escolhe outro assunto.</p></div></div>';
+  }
+  var c = todo[S.fc.i % todo.length];
+  h += '<div class="flip"><button type="button" class="fc" id="fc" data-act="fc-flip" aria-label="Carta: ' + c.l + '. Toque para virar.">' +
+    '<span class="face front"><span class="tp">' + c.n + 'º · ' + SHORT[c.n - 1] + '</span><span class="lb">' + c.l + '</span><span class="hint">Lembrou? Toca pra virar</span></span>' +
+    '<span class="face back" aria-hidden="true"><span class="tp">' + c.l + '</span><span class="fm">' + fmt(c.f) + '</span>' + (c.x ? '<span class="nt">' + fmt(c.x) + '</span>' : '') + '</span></button></div>';
+  h += '<div class="row2"><button type="button" class="btn ghost" data-act="fc-next">Ainda não</button><button type="button" class="btn main" data-act="fc-know">Já sei ✓</button></div>';
+  h += '<p class="note" style="text-align:center">Carta ' + ((S.fc.i % todo.length) + 1) + ' de ' + todo.length + ' pra revisar</p>';
+  return h + '</div>';
 }
 
-/* ---------- prova e cola ---------- */
-$('#provaList').innerHTML = PROVA.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('');
-$('#colaGrid').innerHTML = COLA.map(function(g){
-  return '<div class="cg"><h4>' + g[0] + '</h4><ul>' + g[1].split(' · ').map(function(x){ return '<li>' + fmt(x) + '</li>'; }).join('') + '</ul></div>';
-}).join('');
-
-/* ---------- índice fixo ---------- */
-(function(){
-  var nav = $('#idxnav'), bar = $('#idx');
-  RANK.forEach(function(r, i){
-    var a = document.createElement('a');
-    a.href = '#assunto-' + (i + 1); a.id = 'idx-' + (i + 1); a.textContent = i + 1;
-    a.setAttribute('aria-label', 'Assunto ' + (i + 1) + ': ' + r.n);
-    nav.appendChild(a);
-  });
-  var lastY = window.scrollY, ticking = false;
-  function show(on){ bar.classList.toggle('show', on); bar.setAttribute('aria-hidden', on ? 'false' : 'true'); $$('a', nav).forEach(function(a){ a.tabIndex = on ? 0 : -1; }); }
-  show(false);
-  window.addEventListener('scroll', function(){
-    if (ticking) return; ticking = true;
-    requestAnimationFrame(function(){
-      var y = window.scrollY;
-      if (y < 300) show(false);
-      else if (y < lastY - 4) show(true);
-      else if (y > lastY + 4) show(false);
-      lastY = y; ticking = false;
-    });
-  }, {passive:true});
-})();
-
-/* abre o cartão (ou o cartão da questão) quando um link leva até ele */
-function openFor(hash){
-  if (!hash) return;
-  var el = document.getElementById(hash.slice(1));
-  if (!el) return;
-  var card = el.closest ? el.closest('.card') : null;
-  if (card && !card.classList.contains('open')) setOpen(card, true);
+/* ---------- domingo ---------- */
+function viewDomingo(){
+  var h = '';
+  if (DAYS_LEFT >= 0) h += '<div class="card" style="text-align:center;margin-bottom:14px"><span style="font:700 15px/1.3 var(--sans);color:var(--gold-2)">' + (DAYS_LEFT === 0 ? 'É hoje. Boa prova!' : (DAYS_LEFT === 1 ? 'Falta 1 dia' : 'Faltam ' + DAYS_LEFT + ' dias') + ' para a prova') + '</span><br><span class="small">Domingo, 15/11 · 2º dia: Natureza + Matemática</span></div>';
+  h += '<p class="kicker">Horários</p><div class="card"><ol class="tl">' + TIMELINE.map(function(t){ return '<li><span class="h">' + t[0] + '</span><span class="x">' + t[1] + '</span></li>'; }).join('') + '</ol></div>';
+  h += '<div class="sec"><p class="kicker">Na hora da prova</p><h2 class="h2">Domingo, na prova</h2><div class="card"><ul class="prova">' + PROVA.map(function(x){ return '<li><span>' + x + '</span></li>'; }).join('') + '</ul></div></div>';
+  h += '<div class="sec"><p class="kicker">O que levar</p><div class="card stack">' + LEVAR.map(function(x, k){
+    var on = S.levar.indexOf(k) >= 0;
+    return '<button type="button" class="check" data-act="levar" data-k="' + k + '" aria-pressed="' + on + '"><span class="bx">' + I.check + '</span>' + x + '</button>';
+  }).join('') + '</div></div>';
+  return h + closingHTML();
 }
+
+/* ---------- desenhar ---------- */
+var scrolls = {}, lastKey = null, lastTab = null;
+function render(opts){
+  opts = opts || {};
+  var R = parse();
+  if (R.sim && !S.sim) { location.replace('#/treino'); return; }
+  if (!R.sim && S.sim && R.tab !== 'treino') S.sim = null;
+  var k = key(R);
+  if (lastKey && !opts.keep) scrolls[lastKey] = window.scrollY;
+  var view = $('#view');
+  var html = R.n && R.tab === 'assuntos' ? viewAssunto(R) : R.tab === 'assuntos' ? viewAssuntos() :
+    R.tab === 'treino' ? (R.sim ? viewSim() : viewTreino()) : R.tab === 'cola' ? viewCola(R) :
+    R.tab === 'domingo' ? viewDomingo() : viewInicio();
+  renderTop(R); renderTabs(R);
+  var y = window.scrollY;
+  view.innerHTML = html;
+  $$('.segs').forEach(function(bar){ var sel = bar.querySelector('[aria-selected="true"]'); if (sel) bar.scrollLeft = sel.offsetLeft - (bar.clientWidth - sel.offsetWidth) / 2; });
+  if (opts.keep) { window.scrollTo(0, y); }
+  else {
+    view.classList.remove('enter'); void view.offsetWidth; view.classList.add('enter');
+    var isRoot = !R.n && !R.sim;
+    window.scrollTo(0, isRoot && scrolls[k] ? scrolls[k] : 0);
+    if (lastKey !== null && lastTab !== null) view.focus({preventScroll: true});
+  }
+  lastKey = k; lastTab = R.tab;
+}
+window.addEventListener('hashchange', function(){ render(); });
+
+/* ---------- ações ---------- */
+var navDepth = 0;
+window.addEventListener('hashchange', function(){ navDepth++; });
 document.addEventListener('click', function(e){
-  var a = e.target.closest && e.target.closest('a[href^="#"]');
-  if (a) openFor(a.getAttribute('href'));
+  var el = e.target.closest && e.target.closest('[data-act]');
+  if (!el) return;
+  var act = el.getAttribute('data-act'), R = parse();
+  if (act === 'back') { if (navDepth > 0 && history.length > 1) history.back(); else location.hash = '#/assuntos'; return; }
+  if (act === 'rev') {
+    var n = +el.getAttribute('data-n'), i = S.reviewed.indexOf(n);
+    if (i >= 0) S.reviewed.splice(i, 1); else S.reviewed.push(n);
+    save(); render({keep: true});
+    toast(i >= 0 ? 'Desmarcado' : 'Revisou ' + S.reviewed.length + ' de 8');
+    pop($('#topRev')); return;
+  }
+  if (act === 'day') { S.day = +el.getAttribute('data-i'); render({keep: true}); var d = $('#day-' + S.day); if (d) d.focus(); return; }
+  if (act === 'seg') {
+    var s = el.getAttribute('data-s');
+    history.replaceState(null, '', '#/assunto/' + R.n + '/' + s);
+    var segs = $('.segs'), stick = segs ? segs.offsetTop - parseFloat(getComputedStyle(segs).top) : 0;
+    render({keep: true});
+    if (window.scrollY > stick) window.scrollTo(0, stick);
+    var b = $('.seg[aria-selected="true"]'); if (b) b.focus({preventScroll: true});
+    return;
+  }
+  if (act === 'alt') {
+    var id = el.getAttribute('data-q'), L = el.getAttribute('data-l');
+    if (R.sim && S.sim) {
+      if (S.sim.picks[id]) return;
+      S.sim.picks[id] = L; S.sim.times[id] = (Date.now() - S.sim.t0) / 1000;
+    } else if (S.answers[id]) return;
+    S.answers[id] = L; save(); render({keep: true});
+    var res = $('#q-' + id + ' .qres'); if (res) pop(res.firstChild);
+    return;
+  }
+  if (act === 'redo') { var q = el.getAttribute('data-q'); delete S.answers[q]; save(); render({keep: true}); var a = $('#q-' + q + ' .alt'); if (a) a.focus(); return; }
+  if (act === 'sim-start') { startSim(el.getAttribute('data-m')); return; }
+  if (act === 'sim-next') {
+    if (S.sim.i < S.sim.ids.length - 1) { S.sim.i++; S.sim.t0 = Date.now(); } else S.sim.done = true;
+    render({keep: false}); return;
+  }
+  if (act === 'sim-quit') { S.sim = null; location.hash = '#/treino'; return; }
+  if (act === 'fc-flip') { el.classList.toggle('on'); var bk = el.querySelector('.back'), fr = el.querySelector('.front'); var on = el.classList.contains('on'); bk.setAttribute('aria-hidden', !on); fr.setAttribute('aria-hidden', on); return; }
+  if (act === 'fc-next') { S.fc.i++; render({keep: true}); return; }
+  if (act === 'fc-know') {
+    var todo = deck(S.fc.filter).filter(function(c){ return S.known.indexOf(c.key) < 0; });
+    var c = todo[S.fc.i % todo.length]; if (c) S.known.push(c.key);
+    save(); render({keep: true}); return;
+  }
+  if (act === 'fc-filter') {
+    S.fc.filter = +el.getAttribute('data-f'); S.fc.i = 0;
+    history.replaceState(null, '', '#/cola/flash' + (S.fc.filter ? '/' + S.fc.filter : ''));
+    render({keep: true}); return;
+  }
+  if (act === 'fc-reset') {
+    var keys = deck(S.fc.filter).map(function(c){ return c.key; });
+    S.known = S.known.filter(function(k){ return keys.indexOf(k) < 0; }); S.fc.i = 0;
+    save(); render({keep: true}); return;
+  }
+  if (act === 'levar') { var kk = +el.getAttribute('data-k'), j = S.levar.indexOf(kk); if (j >= 0) S.levar.splice(j, 1); else S.levar.push(kk); save(); render({keep: true}); return; }
+  if (act === 'share') { share(); return; }
 });
-window.addEventListener('hashchange', function(){ openFor(location.hash); });
+/* setas nos dias e nas partes do assunto */
+document.addEventListener('keydown', function(e){
+  var t = e.target; if (!t.closest) return;
+  var list = t.closest('[role="tablist"]'); if (!list) return;
+  var items = $$('[role="tab"]', list), i = items.indexOf(t); if (i < 0) return;
+  var j = null;
+  if (e.key === 'ArrowRight') j = (i + 1) % items.length; else if (e.key === 'ArrowLeft') j = (i - 1 + items.length) % items.length;
+  if (j === null) return;
+  e.preventDefault(); items[j].click();
+  var again = $$('[role="tab"]', document.querySelector('[role="tablist"][aria-label="' + list.getAttribute('aria-label') + '"]'));
+  if (again[j]) again[j].focus();
+});
 
-/* ---------- fechamento ---------- */
-$('#btnInsta').href = cfg('LINK_INSTAGRAM', 'https://www.instagram.com/brenobobeda/');
-(function(){
-  var canal = cfg('LINK_CANAL', '');
-  var b = $('#btnCanal');
-  if (canal) b.href = canal; else { b.style.display = 'none'; b.nextElementSibling.style.display = 'none'; }
-})();
+/* cronômetro do simulado */
+setInterval(function(){
+  if (!S.sim || S.sim.done) return;
+  var id = S.sim.ids[S.sim.i]; if (S.sim.picks[id]) return;
+  var t = $('#simTimer'); if (!t) return;
+  var el = (Date.now() - S.sim.t0) / 1000;
+  t.querySelector('span').textContent = mmss(el);
+  t.classList.toggle('warn', el > PACE);
+}, 1000);
+
 function toast(msg){
   var t = $('#toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('show'); }, 2200);
-}
-function copyText(s){
-  if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(s).catch(function(){ return legacyCopy(s); });
-  return Promise.resolve(legacyCopy(s));
+  clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('show'); }, 1800);
 }
 function legacyCopy(s){
   var ta = document.createElement('textarea'); ta.value = s; ta.setAttribute('readonly', '');
   ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
   try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta);
 }
-$('#btnShare').addEventListener('click', function(){
+function share(){
   var url = cfg('URL_PAGINA', location.href.split('#')[0]);
   var data = {title:'Matemática do ENEM: revisão da reta final', text:'Revisão de matemática pro ENEM, assunto por assunto, na ordem do que mais cai:', url:url};
   if (navigator.share) { navigator.share(data).catch(function(){}); return; }
-  copyText(url).then(function(){ toast('Link copiado'); });
-});
-
-/* ---------- pinta o estado salvo ---------- */
-paintReviewed(false);
-QIDS.forEach(paintQuestion);
-paintScore(false);
-openFor(location.hash);
+  var done = function(){ toast('Link copiado'); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function(){ legacyCopy(url); done(); });
+  else { legacyCopy(url); done(); }
+}
 
 /* ---------- conferência da matemática (console: selfTest()) ---------- */
 function selfTest(){
@@ -845,50 +1074,47 @@ function selfTest(){
   var fact = function(n){ return n <= 1 ? 1 : n * fact(n - 1); };
   var med = function(xs){ var s = xs.slice().sort(function(a, b){ return a - b; }), m = s.length / 2; return s.length % 2 ? s[Math.floor(m)] : (s[m - 1] + s[m]) / 2; };
   var checks = [
-    ['B1 200 × 1,25 × 0,8 = 200', near(200 * 1.25 * 0.8, 200), 'C'],
-    ['B2 8 × 25 000 cm = 2 km', near(8 * 25000 / 100000, 2), 'B'],
-    ['B3 480 ÷ 24 = 20', near(6 * 10 * 8 / (4 * 6), 20), 'D'],
-    ['E1 mediana = 7,5', near(med([6, 8, 5, 9, 7, 8]), 7.5), 'C'],
-    ['E1 média ≈ 7,17', Math.abs((6 + 8 + 5 + 9 + 7 + 8) / 6 - 7.17) < 0.005, null],
-    ['E2 (2·6 + 9)/3 = 7', near((2 * 6 + 9) / 3, 7), 'B'],
-    ['G1 3 × 1² × 2 × 1000 = 6000', near(3 * 1 * 1 * 2 * 1000, 6000), 'C'],
-    ['G2 900/3 = 300', near(900 / 3, 300), 'B'],
-    ['F1 5 + 2,5 × 12 = 35', near(5 + 2.5 * 12, 35), 'C'],
-    ['F2 h(2) = 20', near(-5 * 4 + 20 * 2, 20) && near(-20 / (2 * -5), 2), 'D'],
-    ['F3 800/2³ = 100', near(800 / 8, 100), 'B'],
-    ['P1 1,8 × 6/1,2 = 9', near(1.8 * 6 / 1.2, 9), 'D'],
-    ['P2 (20 + 30) × 12/2 = 300', near((20 + 30) * 12 / 2, 300), 'B'],
-    ['Q1 1 − 1/8 = 7/8', near(1 - 1 / 8, 7 / 8), 'E'],
-    ['C1 C(6,3) = 20', fact(6) / (fact(3) * fact(3)) === 20, 'B'],
-    ['T1 10 × sen 30° = 5', Math.abs(10 * Math.sin(Math.PI / 6) - 5) < 1e-9, 'A']
+    ['B1', '200 × 1,25 × 0,8 = 200', near(200 * 1.25 * 0.8, 200), 'C'],
+    ['B2', '8 × 25 000 cm = 2 km', near(8 * 25000 / 100000, 2), 'B'],
+    ['B3', '480 ÷ 24 = 20', near(6 * 10 * 8 / (4 * 6), 20), 'D'],
+    ['E1', 'mediana = 7,5', near(med([6, 8, 5, 9, 7, 8]), 7.5), 'C'],
+    [null, 'E1 média ≈ 7,17', Math.abs((6 + 8 + 5 + 9 + 7 + 8) / 6 - 7.17) < 0.005],
+    ['E2', '(2·6 + 9)/3 = 7', near((2 * 6 + 9) / 3, 7), 'B'],
+    ['G1', '3 × 1² × 2 × 1000 = 6000', near(3 * 1 * 1 * 2 * 1000, 6000), 'C'],
+    ['G2', '900/3 = 300', near(900 / 3, 300), 'B'],
+    ['F1', '5 + 2,5 × 12 = 35', near(5 + 2.5 * 12, 35), 'C'],
+    ['F2', 'h(2) = 20', near(-5 * 4 + 20 * 2, 20) && near(-20 / (2 * -5), 2), 'D'],
+    ['F3', '800/2³ = 100', near(800 / 8, 100), 'B'],
+    ['P1', '1,8 × 6/1,2 = 9', near(1.8 * 6 / 1.2, 9), 'D'],
+    ['P2', '(20 + 30) × 12/2 = 300', near((20 + 30) * 12 / 2, 300), 'B'],
+    ['Q1', '1 − 1/8 = 7/8', near(1 - 1 / 8, 7 / 8), 'E'],
+    ['C1', 'C(6,3) = 20', fact(6) / (fact(3) * fact(3)) === 20, 'B'],
+    ['T1', '10 × sen 30° = 5', Math.abs(10 * Math.sin(Math.PI / 6) - 5) < 1e-9, 'A']
   ];
-  var ids = ['B1','B2','B3','E1',null,'E2','G1','G2','F1','F2','F3','P1','P2','Q1','C1','T1'];
-  var out = [];
-  checks.forEach(function(c, i){
-    var ok = c[1];
-    if (ids[i]) ok = ok && QUESTIONS[ids[i]].a === c[2];
-    out.push((ok ? 'OK   ' : 'FALHA ') + c[0]);
+  var out = checks.map(function(c){
+    var ok = c[2] && (!c[0] || QUESTIONS[c[0]].a === c[3]);
+    return (ok ? 'OK   ' : 'FALHA ') + (c[0] ? c[0] + ' ' : '') + c[1];
   });
   RANK.forEach(function(r, i){
-    var est = Math.round(r.pct * 45 / 100);
-    var okQ = est >= r.q[0] && est <= r.q[1];
-    var link = document.querySelector('#rank li:nth-child(' + (i + 1) + ') a');
-    var okW = link && Math.abs(parseFloat(link.getAttribute('data-w')) - r.pct / MAX_PCT * 100) < 0.06;
-    out.push(((okQ && okW) ? 'OK   ' : 'FALHA ') + 'ranking ' + (i + 1) + ' ' + r.n + ': ' + r.pct + '% × 45 = ' + (r.pct * 0.45).toFixed(2) + ' ≈ ' + est + ' (texto: ' + qText(r) + '), barra ' + (link && link.getAttribute('data-w')) + '%');
+    var est = Math.round(r.pct * 45 / 100), ok = est >= r.q[0] && est <= r.q[1] && Math.abs(barW(r) - r.pct / 37.3 * 100) < 1e-9;
+    out.push((ok ? 'OK   ' : 'FALHA ') + 'ranking ' + (i + 1) + ' ' + r.n + ': ' + (r.pct * 0.45).toFixed(2) + ' ≈ ' + est + ' (texto: ' + qText(r) + '), barra ' + barW(r).toFixed(1) + '%');
   });
   out.push((near(RANK[0].pct + RANK[1].pct, 48.5) ? 'OK   ' : 'FALHA ') + 'básica + estatística = 48,5%');
   out.push((QIDS.length === 15 ? 'OK   ' : 'FALHA ') + '15 questões');
+  out.push((deck(0).length === TOPICS.reduce(function(s, t){ return s + t.fx.length; }, 0) ? 'OK   ' : 'FALHA ') + deck(0).length + ' flashcards');
   var fails = out.filter(function(l){ return l.indexOf('FALHA') === 0; }).length;
   out.push(fails ? fails + ' FALHA(S)' : 'Tudo certo.');
   console.log(out.join('\n'));
   return fails === 0;
 }
+
 if (location.hash === '#teste') {
-  var ok = selfTest();
-  var d = document.createElement('div'); d.className = 'selftest';
-  d.textContent = 'selfTest(): ' + (ok ? 'tudo certo — veja o console' : 'há falhas — veja o console');
-  document.body.appendChild(d);
-}
+  history.replaceState(null, '', location.pathname + location.search + '#/inicio');
+  render();
+  var okT = selfTest(), box = document.createElement('div'); box.className = 'selftest';
+  box.textContent = 'selfTest(): ' + (okT ? 'tudo certo — veja o console' : 'há falhas — veja o console');
+  document.body.appendChild(box);
+} else render();
 </script>
 </body>
 </html>
